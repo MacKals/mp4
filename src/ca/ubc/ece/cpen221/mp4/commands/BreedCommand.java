@@ -1,9 +1,10 @@
 package ca.ubc.ece.cpen221.mp4.commands;
 
+import ca.ubc.ece.cpen221.mp4.Item;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
-import ca.ubc.ece.cpen221.mp4.items.LivingItem;
+import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
 /**
  * A BreedCommand is a {@link Command} which represents a {@link LivingItem}
@@ -11,7 +12,7 @@ import ca.ubc.ece.cpen221.mp4.items.LivingItem;
  */
 public final class BreedCommand implements Command {
 
-	private final LivingItem item;
+	private final ArenaAnimal animal;
 	private final Location target;
 
 	/**
@@ -24,8 +25,8 @@ public final class BreedCommand implements Command {
 	 * @param target
 	 *            the location where child will appear
 	 */
-	public BreedCommand(LivingItem item, Location target) {
-		this.item = item;
+	public BreedCommand(ArenaAnimal animal, Location target) {
+		this.animal = animal;
 		this.target = target;
 	}
 
@@ -35,7 +36,7 @@ public final class BreedCommand implements Command {
 			throw new InvalidCommandException("Invalid BreedCommand: Invalid/non-empty breeding target location");
 		}
 
-		LivingItem child = item.breed();
+		ArenaAnimal child = animal.breed();
 		child.moveTo(target);
 		world.addItem(child);
 		world.addActor(child);

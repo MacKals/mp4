@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import ca.ubc.ece.cpen221.mp4.Item;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.items.*;

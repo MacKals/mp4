@@ -2,8 +2,6 @@ package ca.ubc.ece.cpen221.mp4;
 
 import java.util.Set;
 
-import ca.ubc.ece.cpen221.mp4.items.Item;
-
 /**
  * The virtual world simulation. Holds all of the {@link Item}s in this
  * simulation and contains methods which insert and retrieve these Items.

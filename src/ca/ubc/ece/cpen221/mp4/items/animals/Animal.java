@@ -1,4 +1,4 @@
-package ca.ubc.ece.cpen221.mp4.items.minecraft;
+package ca.ubc.ece.cpen221.mp4.items.animals;
 
 import javax.swing.ImageIcon;
 
@@ -7,9 +7,27 @@ import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
-import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
-public class Wither implements Minecraft, ArenaAnimal {
+public class Animal implements ArenaAnimal{
+
+    public Animal (AI)
+    @Override
+    public int getEnergy() {
+        // TODO Auto-generated method stub
+        return ;
+    }
+
+    @Override
+    public LivingItem breed() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void eat(Food food) {
+        // TODO Auto-generated method stub
+        
+    }
 
     @Override
     public void moveTo(Location targetLocation) {
@@ -69,24 +87,6 @@ public class Wither implements Minecraft, ArenaAnimal {
     public int getMeatCalories() {
         // TODO Auto-generated method stub
         return 0;
-    }
-
-    @Override
-    public int getEnergy() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public LivingItem breed() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void eat(Food food) {
-        // TODO Auto-generated method stub
-        
     }
 
     @Override

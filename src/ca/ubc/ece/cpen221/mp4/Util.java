@@ -5,8 +5,6 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 
-import ca.ubc.ece.cpen221.mp4.items.Item;
-
 /**
  * Utility class for common tasks.
  */

@@ -2,7 +2,6 @@ package ca.ubc.ece.cpen221.mp4;
 
 import java.util.Set;
 
-import ca.ubc.ece.cpen221.mp4.items.Item;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
 /**

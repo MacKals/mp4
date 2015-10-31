@@ -10,11 +10,11 @@ import java.util.Map;
 import java.util.Set;
 
 import ca.ubc.ece.cpen221.mp4.Actor;
+import ca.ubc.ece.cpen221.mp4.Item;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.InvalidCommandException;
-import ca.ubc.ece.cpen221.mp4.items.Item;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 import ca.ubc.ece.cpen221.mp4.items.humans.*;
 

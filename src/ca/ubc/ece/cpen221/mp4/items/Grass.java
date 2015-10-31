@@ -2,6 +2,7 @@ package ca.ubc.ece.cpen221.mp4.items;
 
 import javax.swing.ImageIcon;
 
+import ca.ubc.ece.cpen221.mp4.Item;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 

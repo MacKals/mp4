@@ -1,44 +1,39 @@
 package ca.ubc.ece.cpen221.mp4.items.animals;
 
-import ca.ubc.ece.cpen221.mp4.items.LivingItem;
+import javax.swing.ImageIcon;
 
-/**
- * Abstractions for foxes and rabbits that provide additional information that
- * might be of use to the AI:
- * <ol>
- * <li>Maximum energy, given by {@link #getMaxEnergy()}</li>
- * <li>View range, given by {@link #getViewRange()}</li>
- * <li>Minimum breeding energy, given by {@link #getMinimumBreedingEnergy()}
- * </li>
- * </ol>
- *
- */
-public interface ArenaAnimal extends LivingItem {
+import ca.ubc.ece.cpen221.mp4.Actor;
+import ca.ubc.ece.cpen221.mp4.Item;
+import ca.ubc.ece.cpen221.mp4.Location;
+import ca.ubc.ece.cpen221.mp4.Util;
+import ca.ubc.ece.cpen221.mp4.World;
+import ca.ubc.ece.cpen221.mp4.commands.Command;
 
-	/**
-	 * Returns the limit of the {@link LivingItem}'s energy. The
-	 * {@link LivingItem}'s energy should never exceed this limit.
-	 *
-	 * @return the energy limit of this animal
-	 */
-	int getMaxEnergy();
+public abstract class ArenaAnimal extends Actor implements ArenaAnimalInterface { // abstract
+    // class for
+    // other
+    // arena
+    // animals
+    private int MAX_ENERGY;
+    private int MIN_BREEDING_ENERGY;
 
-	/**
-	 * Returns the range of the animal's vision. The range is measured in
-	 * Manhattan Distance, for example, if an animal has view range of 2, then
-	 * it can see all valid locations in the rectangle
-	 * {(x-2,y-2),(x+2,y-2),(x-2,y+2),(x+2,y+2)}, where (x,y) are the
-	 * coordinates of its current location.
-	 *
-	 * @return the view range of this animal
-	 */
-	int getViewRange();
+    @Override
+    public abstract ArenaAnimal breed();
 
-	/**
-	 * Returns the minimum energy required for an animal to breed
-	 *
-	 * @return the minimum breeding energy of this animal
-	 */
-	int getMinimumBreedingEnergy();
+    @Override
+    public void eat(Item food) {
+        energy = Math.min(MAX_ENERGY, energy + food.getMeatCalories());
+    }
+
+    @Override
+    public int getMaxEnergy() {
+        return MAX_ENERGY;
+    }
+
+    @Override
+    public int getMinimumBreedingEnergy() {
+        return MIN_BREEDING_ENERGY;
+    }
+
 
 }

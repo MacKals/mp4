@@ -1,9 +1,8 @@
-package ca.ubc.ece.cpen221.mp4.items;
+package ca.ubc.ece.cpen221.mp4;
 
 import javax.swing.ImageIcon;
 
-import ca.ubc.ece.cpen221.mp4.Food;
-import ca.ubc.ece.cpen221.mp4.Location;
+import ca.ubc.ece.cpen221.mp4.items.Grass;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 import ca.ubc.ece.cpen221.mp4.items.animals.Gnat;
 
@@ -11,7 +10,7 @@ import ca.ubc.ece.cpen221.mp4.items.animals.Gnat;
  * An Item represents a physical object in the virtual World that occupies a
  * field and is represented with an image.
  */
-public interface Item extends Food {
+public interface ItemInterface {
 
 	/**
 	 * The visualization of this Item in the world.
@@ -67,5 +66,17 @@ public interface Item extends Food {
 	 * @return true if this Item is dead, false if alive
 	 */
 	boolean isDead();
+	
+	/**
+	 * 
+	 * @return meat energy of this item
+	 */
+	int getMeatCalories();
+	
+	/**
+	 * 
+	 * @return plant energy of this item
+	 */
+	int getPlantCalories();
 
 }
