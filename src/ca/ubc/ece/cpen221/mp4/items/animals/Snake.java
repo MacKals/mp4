@@ -67,8 +67,8 @@ public class Snake implements ArenaAnimal {
     }
 
     @Override
-    public int getMovingRange() { //The hawk is really fast.
-        return 3;
+    public int getMovingRange() { 
+        return 1;
     }
 
     @Override
@@ -104,7 +104,7 @@ public class Snake implements ArenaAnimal {
 
     @Override
     public int getPlantCalories() {
-        //Hawks are not plants.
+        //Snakes are not plants.
         return 0;
     }
 
