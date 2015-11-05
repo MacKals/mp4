@@ -3,16 +3,15 @@ package ca.ubc.ece.cpen221.mp4;
 import ca.ubc.ece.cpen221.mp4.ai.AI;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 
-public abstract class Actor extends Item implements ActorInterface {
+public class Actor extends Item implements ActorInterface {
 
     
-    private int coolDownPeriod;
-    private AI ai;
-    private int movingRange;
-    
-    private int VIEW_RANGE;
-    private int COOLDOWN;
-
+    protected int coolDownPeriod = 1;
+    protected AI ai;
+    protected int movingRange = 1;
+    protected int VIEW_RANGE = 3;
+    protected int INITIAL_ENERGY = 40;
+    protected boolean isDead = false;
     
     @Override
     public int getCoolDownPeriod() {
@@ -34,5 +33,16 @@ public abstract class Actor extends Item implements ActorInterface {
     @Override
     public int getViewRange() {
         return VIEW_RANGE;
+    }
+    
+    @Override
+    public void moveTo(Location location){
+        this.location = location;
+    }
+
+    @Override
+    public void attack(Item enemy) {
+       enemy.loseEnergy(this.getStrength());
+       
     }
 }

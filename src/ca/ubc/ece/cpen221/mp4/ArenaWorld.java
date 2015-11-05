@@ -15,11 +15,11 @@ public interface ArenaWorld {
 	 *
 	 * @see World#searchSurroundings(Location, int)
 	 *
-	 * @param animal
-	 *            the ArenaAnimal whose location is used
+	 * @param actor
+	 *            the Actor whose location is used
 	 * @return a set of items visible to <code>animal</code>
 	 */
-	Set<Item> searchSurroundings(ArenaAnimal animal);
+	Set<Item> searchSurroundings(Actor actor);
 
 	/**
 	 * @return an int representing the number of columns this World has

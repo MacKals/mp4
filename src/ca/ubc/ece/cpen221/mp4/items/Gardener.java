@@ -13,16 +13,15 @@ import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
  * a random location each step if more than half of the world's locations are
  * empty. Don't worry, Grass doesn't just appear...
  */
-public class Gardener implements Actor {
+public class Gardener {
 
-	@Override
+
 	public int getCoolDownPeriod() {
 		// Acts every step.
 		return 1;
 	}
 
 	@SuppressWarnings("unused")
-	@Override
 	public Command getNextAction(World world) {
 		int occupiedLocations = 0;
 		for (Item item : world.getItems()) {
@@ -48,5 +47,6 @@ public class Gardener implements Actor {
 		// Else it does nothing at all.
 		return new WaitCommand();
 	}
+
 
 }

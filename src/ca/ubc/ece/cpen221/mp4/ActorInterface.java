@@ -47,5 +47,17 @@ public interface ActorInterface {
      * @return the view range of this animal
      */
     int getViewRange();
+    
+    // TODO
+    public void attack(Item enemy);
+    
+    /**
+     * Move to the target location. The <code> targetLocation </code> must be
+     * valid and empty.
+     *
+     * @param targetLocation
+     *            the location that this item is moving to
+     */
+    void moveTo(Location location);
 
 }

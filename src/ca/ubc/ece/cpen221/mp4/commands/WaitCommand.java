@@ -1,7 +1,7 @@
 package ca.ubc.ece.cpen221.mp4.commands;
 
 import ca.ubc.ece.cpen221.mp4.World;
-import ca.ubc.ece.cpen221.mp4.items.LivingItem;
+
 
 /**
  * A WaitCommand is a {@link Command} which represents doing nothing

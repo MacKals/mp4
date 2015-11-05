@@ -10,7 +10,7 @@ import ca.ubc.ece.cpen221.mp4.Util;
  * Grass will by planted by the {@link Gardener} every step at an empty location
  * if fewer than half of all locations in the world are occupied.
  */
-public class Grass implements Item {
+public class Grass extends Item {
 	private final static ImageIcon grassImage = Util.loadImage("grass.gif");
 
 	private Location location;

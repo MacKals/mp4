@@ -3,6 +3,7 @@ package ca.ubc.ece.cpen221.mp4.items.animals;
 import javax.swing.ImageIcon;
 
 import ca.ubc.ece.cpen221.mp4.Food;
+import ca.ubc.ece.cpen221.mp4.Item;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
@@ -13,7 +14,7 @@ import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 /**
  * The {@link Fox} is an {@link ArenaAnimal} that tries to eat {@link Rabbit}s.
  */
-public class Fox implements ArenaAnimal {
+public class Fox extends ArenaAnimal {
 
 	private static final int INITIAL_ENERGY = 100;
 	private static final int MAX_ENERGY = 120;
@@ -46,7 +47,7 @@ public class Fox implements ArenaAnimal {
 	}
 
 	@Override
-	public LivingItem breed() {
+	public ArenaAnimal breed() {
 		Fox child = new Fox(ai, location);
 		child.energy = energy / 2;
 		this.energy = energy / 2;
@@ -143,4 +144,10 @@ public class Fox implements ArenaAnimal {
 	public void moveTo(Location targetLocation) {
 		location = targetLocation;
 	}
+
+    @Override
+    public void attack(Item enemy) {
+        // TODO Auto-generated method stub
+        
+    }
 }

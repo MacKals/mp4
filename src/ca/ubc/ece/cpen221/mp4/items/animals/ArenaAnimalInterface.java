@@ -1,6 +1,7 @@
 package ca.ubc.ece.cpen221.mp4.items.animals;
 
 import ca.ubc.ece.cpen221.mp4.Item;
+import ca.ubc.ece.cpen221.mp4.Location;
 
 /**
  * Abstractions for foxes and rabbits that provide additional information that
@@ -65,13 +66,6 @@ public interface ArenaAnimalInterface {
      * @return child the offspring of this animal
      */
     ArenaAnimal breed();
-
-    /**
-     * Eat a {@link Food}, the food must be adjacent to and have less strength
-     * than this {@link LivingItem}.
-     *
-     * @param food
-     *            the Food to be eaten
-     */
-    void eat(Item food);
+    
+    
 }

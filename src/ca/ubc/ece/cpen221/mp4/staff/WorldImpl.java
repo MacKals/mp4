@@ -16,7 +16,6 @@ import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.InvalidCommandException;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
-import ca.ubc.ece.cpen221.mp4.items.humans.*;
 
 /**
  * The implementation of the {@link World}.
@@ -113,8 +112,8 @@ public class WorldImpl implements World {
 	}
 
 	@Override
-	public Set<Item> searchSurroundings(ArenaAnimal animal) {
-		return searchSurroundings(animal.getLocation(), animal.getViewRange());
+	public Set<Item> searchSurroundings(Actor actor) {
+		return searchSurroundings(actor.getLocation(), actor.getViewRange());
 	}
 
 	@Override
@@ -137,5 +136,6 @@ public class WorldImpl implements World {
 	public int getHeight() {
 		return height;
 	}
+
 
 }

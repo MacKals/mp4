@@ -4,13 +4,20 @@ import javax.swing.ImageIcon;
 
 public class Item implements ItemInterface{
 
-    private String name;
+    protected String name;
     protected Location location;
-    private ImageIcon image;
+    protected ImageIcon image = Util.loadImage("unknown.gif");
     
+    protected int PLANT_CALORIES;
+    protected int MEAT_CALORIES;
+    protected int MAX_ENERGY;
     protected int energy;
-    private int STRENGTH;
+    protected int STRENGTH;
     
+    @Override
+    public int getMaxEnergy() {
+        return MAX_ENERGY;
+    }
     
     @Override
     public ImageIcon getImage() {
@@ -43,15 +50,18 @@ public class Item implements ItemInterface{
     }
 
     @Override
+    public int getEnergy() {
+        return energy;
+    }
+    
+    @Override
     public int getMeatCalories() {
-        // TODO Auto-generated method stub
-        return 0;
+        return MEAT_CALORIES;
     }
 
     @Override
-    public int getPlantCalories() {
-        // TODO Auto-generated method stub
-        return 0;
+    public int getPlantCalories() { 
+        return PLANT_CALORIES;
     }
     
 

@@ -78,5 +78,10 @@ public interface ItemInterface {
 	 * @return plant energy of this item
 	 */
 	int getPlantCalories();
+	
+	//TODO
+    public int getMaxEnergy();
+    
+    public int getEnergy();
 
 }

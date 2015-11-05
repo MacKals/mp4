@@ -11,9 +11,9 @@ import ca.ubc.ece.cpen221.mp4.Item;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
+import ca.ubc.ece.cpen221.mp4.commands.AttackCommand;
 import ca.ubc.ece.cpen221.mp4.commands.BreedCommand;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
-import ca.ubc.ece.cpen221.mp4.commands.EatCommand;
 import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.*;
@@ -26,11 +26,11 @@ public class ArenaAnimalAI implements AI {
 		this.energy = energy;
 	}
 
-	public boolean isLocationEmpty(ArenaWorld world, ArenaAnimal animal, Location location) {
+	public boolean isLocationEmpty(ArenaWorld world, Actor actor, Location location) {
 		if (!Util.isValidLocation(world, location)) {
 			return false;
 		}
-		Set<Item> possibleMoves = world.searchSurroundings(animal);
+		Set<Item> possibleMoves = world.searchSurroundings(actor);
 		Iterator<Item> it = possibleMoves.iterator();
 		while (it.hasNext()) {
 			Item item = it.next();
@@ -52,7 +52,7 @@ public class ArenaAnimalAI implements AI {
 			Item item = it.next();
 			if ((item.getName().equals("Gnat") || item.getName().equals("Rabbit"))
 					&& (current.getDistance(item.getLocation()) == 1)) {
-				return new EatCommand(actor, item); // arena animals eat gnats
+				return new AttackCommand(actor, item); // arena animals eat gnats
 														// and rabbits
 			}
 		}
