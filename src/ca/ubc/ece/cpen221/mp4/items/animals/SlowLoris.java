@@ -14,24 +14,21 @@ public class SlowLoris extends ArenaAnimal {
     
     { 
         //All item properties
-    super.name = "SlowLoris";
-    super.image = Util.loadImage("slowloris.gif");
-    super.PLANT_CALORIES = 0;
-    super.MEAT_CALORIES = 60;
-    super.MAX_ENERGY = 60;
-    
-        //protected int energy;
-    super.STRENGTH = 60;
+    super.NAME = "Gnat";
+    super.IMAGE = Util.loadImage("gnat.gif");
+    super.IS_MEAT = true;
+    super.IS_VEGGIE = false;
+    super.MAX_ENERGY = 120;
+    super.STRENGTH = 100;
     
     //All Actor properties
-    super.INITIAL_ENERGY = 40;
-    super.VIEW_RANGE = 3;
-
-    super.coolDownPeriod = 1;
-    super.movingRange = 1;
+    super.INITIAL_ENERGY = 100;
+    super.VIEW_RANGE = 5;
+    super.COOLDOWN_PERIOD = 3;
+    super.MOVING_RANGE = 1;
     
     //ArenaAnimal specific property
-    super.MIN_BREEDING_ENERGY = 10;
+    super.MIN_BREEDING_ENERGY = 20;
     
     }
 

@@ -17,29 +17,26 @@ import ca.ubc.ece.cpen221.mp4.items.Grass;
  */
 public class Rabbit extends ArenaAnimal {
 
-    //All item properties
-    private String name = "Rabbit";
-    protected Location location;
-    private static final ImageIcon image = Util.loadImage("rabbit.gif");
-    protected int PLANT_CALORIES = 0;
-    protected int MEAT_CALORIES ;
-    protected int MAX_ENERGY = 60;
-        //protected int energy;
-    private int STRENGTH = 60;
+    { 
+        //All item properties
+    super.NAME = "Rabbit";
+    super.IMAGE = Util.loadImage("rabbit.gif");
+    super.IS_MEAT = true;
+    super.IS_VEGGIE = false;
+    super.MAX_ENERGY = 60;
+    super.STRENGTH = 60;
     
     //All Actor properties
-	private static final int INITIAL_ENERGY = 40;
-	private static final int VIEW_RANGE = 3;
-	private static final int COOLDOWN = 2;
-
-	private int coolDownPeriod = 1;
-	private final AI ai;
-	private int movingRange = 1;
-	
-	//ArenaAnimal specific property
-	private static final int MIN_BREEDING_ENERGY = 10;
-	
-
+    super.INITIAL_ENERGY = 40;
+    super.VIEW_RANGE = 3;
+    super.COOLDOWN_PERIOD = 2;
+    super.MOVING_RANGE = 1;
+    
+    //ArenaAnimal specific property
+    super.MIN_BREEDING_ENERGY = 10;
+    
+    }
+    
 	/**
 	 * Create a new {@link Rabbit} with an {@link AI} at
 	 * <code> initialLocation </code>. The <code> initialLoation

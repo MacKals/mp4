@@ -7,27 +7,26 @@ import ca.ubc.ece.cpen221.mp4.ai.AI;
 
 public class Hawk extends ArenaAnimal {
 
-    {     
-    //All item properties
-    super.name = "Hawk";
-    super.image = Util.loadImage("hawk.gif");
-    super.PLANT_CALORIES = 0;
-    super.MEAT_CALORIES = 60;
+    { 
+        //All item properties
+    super.NAME = "Hawk";
+    super.IMAGE = Util.loadImage("hawk.gif");
+    super.IS_MEAT = true;
+    super.IS_VEGGIE = false;
     super.MAX_ENERGY = 60;
-    
     super.STRENGTH = 60;
     
     //All Actor properties
     super.INITIAL_ENERGY = 40;
-    super.VIEW_RANGE = 3;
-
-    super.coolDownPeriod = 1;
-    super.movingRange = 1;
+    super.VIEW_RANGE = 5;
+    super.COOLDOWN_PERIOD = 1;
+    super.MOVING_RANGE = 3;
     
     //ArenaAnimal specific property
-    super.MIN_BREEDING_ENERGY = 10;
+    super.MIN_BREEDING_ENERGY = 20;
     
     }
+    
 
     /**
      * Create a new {@link Rabbit} with an {@link AI} at

@@ -17,21 +17,18 @@ public class Fox extends ArenaAnimal {
 
     { 
         //All item properties
-    super.name = "Fox";
-    super.image = Util.loadImage("fox.gif");
-    super.PLANT_CALORIES = 0;
-    super.MEAT_CALORIES = 60;
+    super.NAME = "Fox";
+    super.IMAGE = Util.loadImage("fox.gif");
+    super.IS_MEAT = true;
+    super.IS_VEGGIE = false;
     super.MAX_ENERGY = 120;
-    
-        //protected int energy;
     super.STRENGTH = 100;
     
     //All Actor properties
     super.INITIAL_ENERGY = 100;
     super.VIEW_RANGE = 5;
-
-    super.coolDownPeriod = 3;
-    super.movingRange = 1;
+    super.COOLDOWN_PERIOD = 3;
+    super.MOVING_RANGE = 1;
     
     //ArenaAnimal specific property
     super.MIN_BREEDING_ENERGY = 20;
