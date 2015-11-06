@@ -1,26 +1,20 @@
 package ca.ubc.ece.cpen221.mp4.items.animals;
 
-import javax.swing.ImageIcon;
-
-
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
-import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.ai.AI;
-import ca.ubc.ece.cpen221.mp4.commands.Command;
 
 
 public class Hawk extends ArenaAnimal {
 
-    { 
-        //All item properties
+    {     
+    //All item properties
     super.name = "Hawk";
     super.image = Util.loadImage("hawk.gif");
     super.PLANT_CALORIES = 0;
     super.MEAT_CALORIES = 60;
     super.MAX_ENERGY = 60;
     
-        //protected int energy;
     super.STRENGTH = 60;
     
     //All Actor properties
