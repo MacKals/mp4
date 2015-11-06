@@ -8,13 +8,15 @@ import ca.ubc.ece.cpen221.mp4.commands.Command;
  * of that World. It has a cooldown period which defines how often it performs
  * an action.
  */
-public class Actor extends Item {
+public abstract class Actor extends Item {
 
-    protected int coolDownPeriod = 1;
     protected AI ai;
-    protected int movingRange = 1;
-    protected int VIEW_RANGE = 3;
-    protected int INITIAL_ENERGY = 40;
+    
+    protected int COOLDOWN_PERIOD;
+    protected int MOVING_RANGE;
+    protected int VIEW_RANGE;
+    protected int INITIAL_ENERGY;
+    
     protected boolean isDead = false;
     
     /**
@@ -24,7 +26,7 @@ public class Actor extends Item {
      * @return the number of steps between actions
      */
     public int getCoolDownPeriod() {
-        return coolDownPeriod;
+        return COOLDOWN_PERIOD;
     }
 
     /**
@@ -49,7 +51,7 @@ public class Actor extends Item {
      * @return the maximum moving distance
      */
     public int getMovingRange() {
-        return movingRange; // Can only move to adjacent locations.
+        return MOVING_RANGE; // Can only move to adjacent locations.
     }
 
     /**

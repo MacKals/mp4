@@ -11,10 +11,10 @@ import ca.ubc.ece.cpen221.mp4.items.animals.Gnat;
  * An Item represents a physical object in the virtual World that occupies a
  * field and is represented with an image.
  */
-public class Item {
+public abstract class Item {
 
-    protected ImageIcon IMAGE = Util.loadImage("unknown.gif");
     protected String NAME;
+    protected ImageIcon IMAGE;
     protected boolean IS_MEAT;
     protected boolean IS_VEGGIE;
     protected int MAX_ENERGY;
@@ -117,6 +117,8 @@ public class Item {
      * @return meat energy of this item
      */
     public int getMeatCalories() {
+        
+        if (IS_MEAT) return energy;
         return 0;
     }
     
@@ -125,6 +127,8 @@ public class Item {
      * @return plant energy of this item
      */
     public int getPlantCalories() { 
+        
+        if (IS_VEGGIE) return energy;
         return 0;
     }
 }

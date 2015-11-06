@@ -60,6 +60,10 @@ public class Main {
 		// TODO: You may add your own creatures here!
 	}
 
+	private void createWorldInhabitants() {
+	    
+	}
+	
 	private void addGrass(World world) {
 		for (int i = 0; i < INITIAL_GRASS; i++) {
 			Location loc = Util.getRandomEmptyLocation(world);

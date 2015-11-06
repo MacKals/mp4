@@ -4,7 +4,6 @@ import ca.ubc.ece.cpen221.mp4.Actor;
 import ca.ubc.ece.cpen221.mp4.Item;
 
 
-
 /**
  * Abstractions for foxes and rabbits that provide additional information that
  * might be of use to the AI:
@@ -17,7 +16,6 @@ import ca.ubc.ece.cpen221.mp4.Item;
  */
 public abstract class ArenaAnimal extends Actor { 
     
-
     protected int MIN_BREEDING_ENERGY;
 
     /**
