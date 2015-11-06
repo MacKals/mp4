@@ -29,9 +29,8 @@ public class Gnat extends ArenaAnimal {
     //All Actor properties
     super.INITIAL_ENERGY = 100;
     super.VIEW_RANGE = 5;
-
-    super.coolDownPeriod = 3;
-    super.movingRange = 1;
+    super.COOLDOWN_PERIOD = 3;
+    super.MOVING_RANGE = 1;
     
     //ArenaAnimal specific property
     super.MIN_BREEDING_ENERGY = 20;
