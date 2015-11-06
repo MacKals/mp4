@@ -17,25 +17,27 @@ import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
  */
 public class Gnat extends ArenaAnimal {
     
-//    
-//    private String name;
-//    protected Location location;
-//    private ImageIcon image;
-//    
-//    protected int MAX_ENERGY;
-//    protected int energy;
-//    private int STRENGTH;
+    { 
+        //All item properties
+    super.NAME = "Gnat";
+    super.IMAGE = Util.loadImage("gnat.gif");
+    super.IS_MEAT = true;
+    super.IS_VEGGIE = false;
+    super.MAX_ENERGY = 120;
+    super.STRENGTH = 100;
     
-	super.image = Util.loadImage("gnat.gif");
-	super.MEAT_CALORIES = 100;
-	super.PLANT_CALORIES = 0;
-	super.STRENGTH = 10;
-	super.energy = 100;
-	super.movingRange = 1;
-	
-	super.name = "Gnat";
+    //All Actor properties
+    super.INITIAL_ENERGY = 100;
+    super.VIEW_RANGE = 5;
 
-
+    super.coolDownPeriod = 3;
+    super.movingRange = 1;
+    
+    //ArenaAnimal specific property
+    super.MIN_BREEDING_ENERGY = 20;
+    
+    }
+    
 	/**
 	 * Create a new Gnat at <code>initialLocation</code>. The
 	 * <code>initialLocation</code> must be valid and empty.
@@ -47,7 +49,8 @@ public class Gnat extends ArenaAnimal {
 		super.location = initialLocation;
 		this.isDead = false;
 	}
-
+	
+	@Override
 	public ArenaAnimal breed(){
 	   return null;    
 	}
@@ -55,7 +58,7 @@ public class Gnat extends ArenaAnimal {
 	
 	@Override
 	public void loseEnergy(int energy) {
-		isDead = true; // Dies if it loses energy.
+		this.isDead = true; // Dies if it loses energy.
 	}
 
 	@Override
