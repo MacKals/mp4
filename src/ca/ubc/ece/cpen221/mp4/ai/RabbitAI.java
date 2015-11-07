@@ -42,7 +42,7 @@ public class RabbitAI extends AbstractAI {
 	        if (oponent instanceof Fox) {
 	            Fox fox = (Fox) oponent; 
 	            
-	            //if (fox.)
+	           // if (  )
 	            
 	        } else if (oponent instanceof Grass) {
 	            
@@ -51,6 +51,7 @@ public class RabbitAI extends AbstractAI {
 	        }
 	    }
 	    
-	    return new WaitCommand();
+	    return new MoveCommand(actor, new Location(actor.getLocation().getX(), actor.getLocation().getY() + 1) );
+	 //   return new WaitCommand();
 	}
 }
