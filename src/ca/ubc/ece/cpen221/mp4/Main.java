@@ -26,11 +26,11 @@ public class Main {
 	static final int INITIAL_GRASS = X_DIM * Y_DIM / SPACES_PER_GRASS;
 	static final int INITIAL_GNATS = INITIAL_GRASS / 4;
 	
-	static final int INITIAL_RABBITS = INITIAL_GRASS / 4;
+	static final int INITIAL_RABBI = INITIAL_GRASS / 4;
 	static final int INITIAL_FOXES = INITIAL_GRASS / 32;
 	
 	static final int INITIAL_HAWKS = INITIAL_GRASS / 32;
-	static final int INITIAL_SLOW_LORIS = INITIAL_GRASS / 40;
+	static final int INITIAL_SLOWL = INITIAL_GRASS / 40;
 	static final int INITIAL_SNAKE = INITIAL_GRASS / 32;
 	
 	//not in use
@@ -66,15 +66,16 @@ public class Main {
             
             itemsAreBeingAdded = false;
             
-            if (count < INITIAL_GRASS) add(new Grass(loc()));
-            if (count < INITIAL_GNATS) add(new Gnat(loc()));
+            if (count < INITIAL_GRASS) add(new Grass(   loc()));
+            if (count < INITIAL_GNATS) add(new Gnat(    loc()));
             
-            if (count < INITIAL_FOXES) add(new Fox(new FoxAI(), loc()));
-            if (count < INITIAL_RABBITS) add(new Rabbit(new RabbitAI(), loc()));
-            if (count < INITIAL_HAWKS) add(new Hawk(new RabbitAI(), loc()));
-            if (count < INITIAL_SLOW_LORIS) add(new SlowLoris(new RabbitAI(), loc()));
-            if (count < INITIAL_SNAKE) add(new Snake(new RabbitAI(), loc()));
-
+            if (count < INITIAL_FOXES) add(new Fox(         new FoxAI(),        loc()));
+            if (count < INITIAL_RABBI) add(new Rabbit(      new RabbitAI(),     loc()));
+            
+            if (count < INITIAL_HAWKS) add(new Hawk(        new HawkAI(),       loc()));
+            if (count < INITIAL_SLOWL) add(new SlowLoris(   new SlowLorisAI(),  loc()));
+            if (count < INITIAL_SNAKE) add(new Snake(       new SnakeAI(),      loc()));
+            
             count++;
         }
 	}
