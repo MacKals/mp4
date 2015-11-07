@@ -72,9 +72,9 @@ public class Main {
             if (count < INITIAL_FOXES) add(new Fox(         new FoxAI(),        loc()));
             if (count < INITIAL_RABBI) add(new Rabbit(      new RabbitAI(),     loc()));
             
-            if (count < INITIAL_HAWKS) add(new Hawk(        new HawkAI(),       loc()));
-            if (count < INITIAL_SLOWL) add(new SlowLoris(   new SlowLorisAI(),  loc()));
-            if (count < INITIAL_SNAKE) add(new Snake(       new SnakeAI(),      loc()));
+            if (count < INITIAL_HAWKS) add(new Hawk(        new RabbitAI(),     loc()));
+            if (count < INITIAL_SLOWL) add(new SlowLoris(   new RabbitAI(),     loc()));
+            if (count < INITIAL_SNAKE) add(new Snake(       new RabbitAI(),     loc()));
             
             count++;
         }

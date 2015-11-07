@@ -3,7 +3,6 @@ package ca.ubc.ece.cpen221.mp4.ai;
 import ca.ubc.ece.cpen221.mp4.Actor;
 import ca.ubc.ece.cpen221.mp4.ArenaWorld;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
-import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
 /**
  * The AI interface for all animal AIs. Your implementations of FoxAI and
