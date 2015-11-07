@@ -30,8 +30,27 @@ public class FoxAI extends AbstractAI {
 	
 	@Override
 	public Command getNextAction(ArenaWorld world, Actor actor) {
-		// TODO: Change this. Implement your own AI to make decisions regarding
-		// the next action.
+		
+	    Set<Item> nearbyItems = world.searchSurroundings(actor);
+	    
+	    if (!nearbyItems.isEmpty()){
+	        for (Item item : nearbyItems){
+	            if (item.getName() == "Rabbit"){
+	                actor.moveTo(new Location(item.getLocation(), Direction.North));
+	                actor.attack(item);
+	            }
+	            if (item.getName() == "Snake"){
+	                actor.attack(item);
+	            }
+	        } 
+	    }
+	    else {
+	        if (actor instanceof ArenaAnimal && actor.getEnergy() >= ((ArenaAnimal) actor).getMinimumBreedingEnergy()){
+	            ((ArenaAnimal) actor).breed();
+	        }
+	    }
+	    
+	    
 		return new WaitCommand();
 	}
 
