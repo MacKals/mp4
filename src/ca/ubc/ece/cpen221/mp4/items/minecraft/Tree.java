@@ -2,68 +2,21 @@ package ca.ubc.ece.cpen221.mp4.items.minecraft;
 
 import javax.swing.ImageIcon;
 
+import ca.ubc.ece.cpen221.mp4.Item;
 import ca.ubc.ece.cpen221.mp4.Location;
+import ca.ubc.ece.cpen221.mp4.Util;
 
-public class Tree implements Minecraft {
+public class Tree extends Item {
 
-    @Override
-    public void moveTo(Location targetLocation) {
-        // TODO Auto-generated method stub
-        
+    { 
+        //All item properties
+    super.NAME = "Tree";
+    super.IMAGE = Util.loadImage("tree.gif");
+    super.IS_MEAT = false;
+    super.IS_VEGGIE = true;
+    super.MAX_ENERGY = 1000;
+    super.STRENGTH = 60;
+    
     }
-
-    @Override
-    public int getMovingRange() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public ImageIcon getImage() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public String getName() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Location getLocation() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public int getStrength() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public void loseEnergy(int energy) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public boolean isDead() {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public int getPlantCalories() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public int getMeatCalories() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
+  
 }
