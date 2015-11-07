@@ -35,21 +35,23 @@ public class RabbitAI extends AbstractAI {
 	@Override
 	public Command getNextAction(ArenaWorld world, Actor actor) {
 	    
-	    Set visibleOpenents = world.searchSurroundings(actor);
+	    Set<Item> visibleOpenents = world.searchSurroundings(actor);
 	    
-	    for (Object oponent : visibleOpenents) {
+	    for (Object opponent : visibleOpenents) {
 	        
-	        if (oponent instanceof Fox) {
-	            Fox fox = (Fox) oponent; 
+	        if (opponent instanceof Fox) {
+	            Fox fox = (Fox) opponent; 
 	            
 	           // if (  )
 	            
-	        } else if (oponent instanceof Grass) {
+	        } else if (opponent instanceof Grass) {
 	            
 	            
 	            
 	        }
 	    }
+	    
+	    
 	    
 	    return new MoveCommand(actor, new Location(actor.getLocation().getX(), actor.getLocation().getY() + 1) );
 	 //   return new WaitCommand();

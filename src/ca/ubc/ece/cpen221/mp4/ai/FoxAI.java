@@ -33,11 +33,17 @@ public class FoxAI extends AbstractAI {
 		
 	    Set<Item> nearbyItems = world.searchSurroundings(actor);
 	    
-	    if (!nearbyItems.isEmpty()){
+	   /* if (!nearbyItems.isEmpty()){
 	        for (Item item : nearbyItems){
 	            if (item.getName() == "Rabbit"){
-	                actor.moveTo(new Location(item.getLocation(), Direction.North));
-	                actor.attack(item);
+	                
+	                if ( Math.abs( actor.getLocation().getX() - item.getLocation().getX() ) > 4) {
+	                    if ( Math.abs( actor.getLocation().getY() - item.getLocation().getY() ) > 4 ) {
+	                        return new MoveCommand(actor, new Location(actor.getLocation(), Direction.North));
+	                    }
+	                } 
+	                
+	                return new AttackCommand(actor, item);
 	            }
 	            if (item.getName() == "Snake"){
 	                actor.attack(item);
@@ -50,8 +56,8 @@ public class FoxAI extends AbstractAI {
 	        }
 	    }
 	    
-	    
-		return new WaitCommand();
+	    */
+        return new WaitCommand();//MoveCommand(actor, new Location(actor.getLocation(), Direction.North));
 	}
 
 }
