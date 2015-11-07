@@ -44,65 +44,45 @@ public class Main {
 		});
 	}
 
+	World world;
+	boolean itemsAreBeingAdded = true;
+	
 	public void createAndShowWorld() {
-		World world = new WorldImpl(X_DIM, Y_DIM);
-		initialize(world);
+		world = new WorldImpl(X_DIM, Y_DIM);
+		initializeWorld();
 		new WorldUI(world).show();
 	}
 
-	public void initialize(World world) {
-		//world.addActor(new Gardener());
+	public void initializeWorld() {
+	    int count = 0;
+        
+        while (itemsAreBeingAdded) {
+            
+            itemsAreBeingAdded = false;
+            
+            if (count < INITIAL_GRASS) add(new Grass(loc()));
+            if (count < INITIAL_GNATS) add(new Gnat(loc()));
+            
+            if (count < INITIAL_FOXES) add(new Fox(new FoxAI(), loc()));
+            if (count < INITIAL_RABBITS) add(new Rabbit(new RabbitAI(), loc()));
 
-		//addGnats(world);
-		addRabbits(world);
-		// TODO: You may add your own creatures here!
+            count++;
+        }
 	}
 
-	private void createWorldInhabitants(World world) {
+	private void add(Item item) {
 	    
-	    boolean activeExecution = true;
-	    int count = 0;
+	    itemsAreBeingAdded = true;
 	    
-	    while (activeExecution) {
-	        
-	        if (count < INITIAL_GRASS) {
-	            Location loc = Util.getRandomEmptyLocation(world);
-	            world.addItem(new Grass(loc));
-	            
-	            activeExecution = true;
-	        }
-	        
-	        if (count < INITIAL_GNATS) {
-	            Location loc = Util.getRandomEmptyLocation(world);
-	            Gnat gnat = new Gnat(loc);
-	            world.addItem(gnat);
-	            world.addActor(gnat);
-	        }
-	        
-	        if (count < INITIAL_FOXES) {
-	            Location loc = Util.getRandomEmptyLocation(world);
-	            Fox fox = new Fox(new FoxAI(), loc);
-	            world.addItem(fox);
-	            world.addActor(fox);
-	        }
-	        
-	        
-	        
-	        
-	        
-	        count++;
-	        
+	    world.addItem(item);
+	    
+	    if (item instanceof Actor) {
+	        world.addActor((Actor) item);
 	    }
 	}
 	
-
-	private void addRabbits(World world) {
-		RabbitAI rabbitAI = new RabbitAI();
-		for (int i = 0; i < INITIAL_RABBITS; i++) {
-			Location loc = Util.getRandomEmptyLocation(world);
-			Rabbit rabbit = new Rabbit(rabbitAI, loc);
-			world.addItem(rabbit);
-			world.addActor(rabbit);
-		}
+	private Location loc() {
+        return Util.getRandomEmptyLocation(world);
 	}
+	
 }
