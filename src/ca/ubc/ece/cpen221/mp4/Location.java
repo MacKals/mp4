@@ -39,16 +39,16 @@ public final class Location {
 		this.y = src.y;
 
 		switch (dir) {
-		case NORTH:
+		case North:
 			this.y -= 1;
 			break;
-		case SOUTH:
+		case South:
 			this.y += 1;
 			break;
-		case EAST:
+		case East:
 			this.x += 1;
 			break;
-		case WEST:
+		case West:
 			this.x -= 1;
 			break;
 		}

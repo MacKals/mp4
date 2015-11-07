@@ -60,15 +60,15 @@ public final class Util {
 
 		if (Math.abs(dx) > Math.abs(dy)) {
 			if (dx > 0) {
-				return Direction.EAST;
+				return Direction.East;
 			} else {
-				return Direction.WEST;
+				return Direction.West;
 			}
 		} else {
 			if (dy > 0) {
-				return Direction.SOUTH;
+				return Direction.South;
 			} else {
-				return Direction.NORTH;
+				return Direction.North;
 			}
 		}
 	}

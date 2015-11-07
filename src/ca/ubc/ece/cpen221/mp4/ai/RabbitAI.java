@@ -14,6 +14,7 @@ import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.AttackCommand;
 import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
+import ca.ubc.ece.cpen221.mp4.items.Grass;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 import ca.ubc.ece.cpen221.mp4.items.animals.Fox;
 import ca.ubc.ece.cpen221.mp4.items.animals.Rabbit;
@@ -28,11 +29,29 @@ public class RabbitAI extends AbstractAI {
 	private boolean foxFound;
 
 	public RabbitAI() {
+	    
 	}
 
 	@Override
 	public Command getNextAction(ArenaWorld world, Actor actor) {
-		// TODO: Change this. Implement your own AI rules.
-		return new WaitCommand();
+	    
+	    Set visibleOpenents = world.searchSurroundings(actor);
+	    
+	    for (Object oponent : visibleOpenents) {
+	        
+	        if (oponent instanceof Fox) {
+	            Fox fox = (Fox) oponent; 
+	            
+	           // if (  )
+	            
+	        } else if (oponent instanceof Grass) {
+	            
+	            
+	            
+	        }
+	    }
+	    
+	    return new MoveCommand(actor, new Location(actor.getLocation().getX(), actor.getLocation().getY() + 1) );
+	 //   return new WaitCommand();
 	}
 }
