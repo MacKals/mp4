@@ -14,8 +14,8 @@ public class SlowLoris extends ArenaAnimal {
     
     { 
         //All item properties
-    super.NAME = "Gnat";
-    super.IMAGE = Util.loadImage("gnat.gif");
+    super.NAME = "Slow Loris";
+    super.IMAGE = Util.loadImage("slowloris.gif");
     super.IS_MEAT = true;
     super.IS_VEGGIE = false;
     super.MAX_ENERGY = 120;
