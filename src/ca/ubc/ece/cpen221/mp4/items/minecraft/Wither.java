@@ -2,121 +2,42 @@ package ca.ubc.ece.cpen221.mp4.items.minecraft;
 
 import javax.swing.ImageIcon;
 
-import ca.ubc.ece.cpen221.mp4.Food;
+import ca.ubc.ece.cpen221.mp4.Actor;
 import ca.ubc.ece.cpen221.mp4.Location;
+import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
+import ca.ubc.ece.cpen221.mp4.ai.AI;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
-import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
-public class Wither implements Minecraft, ArenaAnimal {
+public class Wither extends Actor {
 
-    @Override
-    public void moveTo(Location targetLocation) {
-        // TODO Auto-generated method stub
-        
+    { 
+        //All item properties
+    super.NAME = "Wither";
+    super.IMAGE = Util.loadImage("wither.gif");
+    super.IS_MEAT = false;
+    super.IS_VEGGIE = false;
+    super.MAX_ENERGY = 10000;
+    super.STRENGTH = 500;
+    
+    //All Actor properties
+    super.INITIAL_ENERGY = 8000;
+    super.VIEW_RANGE = 10;
+    super.COOLDOWN_PERIOD = 1;
+    super.MOVING_RANGE = 2;
     }
-
-    @Override
-    public int getMovingRange() {
-        // TODO Auto-generated method stub
-        return 0;
+    
+    public Wither(AI witherAI, Location initialLocation) {
+        this.ai = witherAI;
+        this.location = initialLocation;
+        this.energy = this.INITIAL_ENERGY;
     }
-
-    @Override
-    public ImageIcon getImage() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public String getName() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Location getLocation() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public int getStrength() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public void loseEnergy(int energy) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public boolean isDead() {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public int getPlantCalories() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public int getMeatCalories() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public int getEnergy() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public LivingItem breed() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void eat(Food food) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public int getCoolDownPeriod() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
+    
     @Override
     public Command getNextAction(World world) {
-        // TODO Auto-generated method stub
-        return null;
+        Command nextAction = this.ai.getNextAction(world, this);
+        this.energy = this.energy - 500; // Loses 1000 energy regardless of action.
+        return nextAction;
     }
-
-    @Override
-    public int getMaxEnergy() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public int getViewRange() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public int getMinimumBreedingEnergy() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
 }

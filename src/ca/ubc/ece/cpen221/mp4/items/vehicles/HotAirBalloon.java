@@ -2,68 +2,34 @@ package ca.ubc.ece.cpen221.mp4.items.vehicles;
 
 import javax.swing.ImageIcon;
 
+import ca.ubc.ece.cpen221.mp4.Actor;
 import ca.ubc.ece.cpen221.mp4.Location;
+import ca.ubc.ece.cpen221.mp4.Util;
+import ca.ubc.ece.cpen221.mp4.ai.AI;
 
-public class HotAirBalloon implements Vehicle{
+public class HotAirBalloon extends Actor {
 
-    @Override
-    public void moveTo(Location targetLocation) {
-        // TODO Auto-generated method stub
-        
+    { 
+        //All item properties
+    super.NAME = "Hot Air Balloon";
+    super.IMAGE = Util.loadImage("hotairballoon.gif");
+    super.IS_MEAT = false;
+    super.IS_VEGGIE = false;
+    super.MAX_ENERGY = 120;
+    super.STRENGTH = 100;
+    
+    //All Actor properties
+    super.INITIAL_ENERGY = 100;
+    super.VIEW_RANGE = 15;
+    super.COOLDOWN_PERIOD = 3;
+    super.MOVING_RANGE = 1;
     }
+    
+    public HotAirBalloon(AI hotAirBalloonAI, Location initialLocation) {
+        this.ai = hotAirBalloonAI;
+        this.location = initialLocation;
 
-    @Override
-    public int getMovingRange() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public ImageIcon getImage() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public String getName() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Location getLocation() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public int getStrength() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public void loseEnergy(int energy) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public boolean isDead() {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public int getPlantCalories() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public int getMeatCalories() {
-        // TODO Auto-generated method stub
-        return 0;
+        this.energy = INITIAL_ENERGY;
     }
 
 }
