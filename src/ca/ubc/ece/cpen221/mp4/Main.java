@@ -51,44 +51,50 @@ public class Main {
 	}
 
 	public void initialize(World world) {
-		addGrass(world);
-		world.addActor(new Gardener());
+		//world.addActor(new Gardener());
 
-		addGnats(world);
+		//addGnats(world);
 		addRabbits(world);
-		addFoxes(world);
 		// TODO: You may add your own creatures here!
 	}
 
-	private void createWorldInhabitants() {
+	private void createWorldInhabitants(World world) {
 	    
+	    boolean activeExecution = true;
+	    int count = 0;
+	    
+	    while (activeExecution) {
+	        
+	        if (count < INITIAL_GRASS) {
+	            Location loc = Util.getRandomEmptyLocation(world);
+	            world.addItem(new Grass(loc));
+	            
+	            activeExecution = true;
+	        }
+	        
+	        if (count < INITIAL_GNATS) {
+	            Location loc = Util.getRandomEmptyLocation(world);
+	            Gnat gnat = new Gnat(loc);
+	            world.addItem(gnat);
+	            world.addActor(gnat);
+	        }
+	        
+	        if (count < INITIAL_FOXES) {
+	            Location loc = Util.getRandomEmptyLocation(world);
+	            Fox fox = new Fox(new FoxAI(), loc);
+	            world.addItem(fox);
+	            world.addActor(fox);
+	        }
+	        
+	        
+	        
+	        
+	        
+	        count++;
+	        
+	    }
 	}
 	
-	private void addGrass(World world) {
-		for (int i = 0; i < INITIAL_GRASS; i++) {
-			Location loc = Util.getRandomEmptyLocation(world);
-			world.addItem(new Grass(loc));
-		}
-	}
-
-	private void addGnats(World world) {
-		for (int i = 0; i < INITIAL_GNATS; i++) {
-			Location loc = Util.getRandomEmptyLocation(world);
-			Gnat gnat = new Gnat(loc);
-			world.addItem(gnat);
-			world.addActor(gnat);
-		}
-	}
-
-	private void addFoxes(World world) {
-		FoxAI foxAI = new FoxAI();
-		for (int i = 0; i < INITIAL_FOXES; i++) {
-			Location loc = Util.getRandomEmptyLocation(world);
-			Fox fox = new Fox(foxAI, loc);
-			world.addItem(fox);
-			world.addActor(fox);
-		}
-	}
 
 	private void addRabbits(World world) {
 		RabbitAI rabbitAI = new RabbitAI();
