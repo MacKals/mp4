@@ -75,7 +75,7 @@ public class VehicleAI extends AbstractAI {
     }
 
     private Command makeDecision(Direction direction, World world, Actor actor, Set<Item> items) {
-        if (Util.isValidLocation(world, new Location(actor.getLocation(), Direction.East))){
+        if (Util.isValidLocation(world, new Location(actor.getLocation(), direction))){
             if (Util.isLocationEmpty((World) world, new Location(actor.getLocation(), direction))) {
                 return new MoveCommand(actor, new Location(actor.getLocation(), direction));
             }
