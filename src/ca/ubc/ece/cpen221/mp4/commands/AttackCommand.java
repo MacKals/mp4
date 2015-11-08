@@ -40,5 +40,4 @@ public final class AttackCommand implements Command {
 		actor.attack(enemy);
 		enemy.loseEnergy(Integer.MAX_VALUE);
 	}
-
 }

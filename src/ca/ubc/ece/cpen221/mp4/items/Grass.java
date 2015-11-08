@@ -1,7 +1,5 @@
 package ca.ubc.ece.cpen221.mp4.items;
 
-import javax.swing.ImageIcon;
-
 import ca.ubc.ece.cpen221.mp4.Item;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
@@ -11,62 +9,27 @@ import ca.ubc.ece.cpen221.mp4.Util;
  * if fewer than half of all locations in the world are occupied.
  */
 public class Grass extends Item {
-	private final static ImageIcon grassImage = Util.loadImage("grass.gif");
 
-	private Location location;
-	private boolean isDead;
-
-	/**
-	 * Plant a Grass at <code> location </code>. The location must be valid and
-	 * empty
-	 *
-	 * @param location
-	 *            : the location where this grass will be created
-	 */
-	public Grass(Location location) {
-		this.location = location;
-		this.isDead = false;
-	}
-
-	@Override
-	public ImageIcon getImage() {
-		return grassImage;
-	}
-
-	@Override
-	public String getName() {
-		return "grass";
-	}
-
-	@Override
-	public Location getLocation() {
-		return location;
-	}
-
-	@Override
-	public int getPlantCalories() {
-		return 10;
-	}
-
-	@Override
-	public int getMeatCalories() {
-		return 0;
-	}
-
-	@Override
-	public void loseEnergy(int energy) {
-		// Dies if loses energy.
-		isDead = true;
-	}
-
-	@Override
-	public boolean isDead() {
-		return isDead;
-	}
-
-	@Override
-	public int getStrength() {
-		return 5;
-	}
+    {
+    //All item properties
+    super.NAME = "grass";
+    super.IMAGE = Util.loadImage("grass.gif");
+    super.IS_MEAT = true;
+    super.IS_VEGGIE = false;
+    super.MAX_ENERGY = 10;
+    super.STRENGTH = 5;
+    }
+    
+    /**
+     * Plant a Grass at <code> location </code>. The location must be valid and
+     * empty
+     *
+     * @param location
+     *            : the location where this grass will be created
+     */
+    public Grass(Location initialLocation) {
+        this.location = initialLocation;
+        this.energy = MAX_ENERGY;
+    }
 
 }

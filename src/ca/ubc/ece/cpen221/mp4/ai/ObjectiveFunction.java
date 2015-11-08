@@ -1,9 +1,6 @@
 package ca.ubc.ece.cpen221.mp4.ai;
 
-import java.io.UncheckedIOException;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import ca.ubc.ece.cpen221.mp4.Actor;
@@ -11,8 +8,6 @@ import ca.ubc.ece.cpen221.mp4.ArenaWorld;
 import ca.ubc.ece.cpen221.mp4.Direction;
 import ca.ubc.ece.cpen221.mp4.Item;
 import ca.ubc.ece.cpen221.mp4.Location;
-import ca.ubc.ece.cpen221.mp4.Util;
-import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.commands.AttackCommand;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
@@ -34,11 +29,10 @@ public class ObjectiveFunction {
         // for making movement disition
         repulsionWeight = -10;
         foodWeight = ((int) (4 / RELATIVE_ENERGY));
-        impartialWeight = 4;
+        impartialWeight = -10;
 
         // for making eating disition
-        attackDesire = RELATIVE_ENERGY * 10;
-
+        attackDesire = RELATIVE_ENERGY * 100;
     }
 
     public ObjectiveFunction(Actor actor, ArenaWorld world) {

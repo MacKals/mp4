@@ -78,11 +78,10 @@ public abstract class Actor extends Item {
 
     //TODO: comment
     public void attack(Item enemy) {
-        if ((this.MAX_ENERGY - this.energy) > enemy.getEnergy()){
-            this.energy += enemy.getEnergy(); 
-        }
-        else{
-            this.energy = this.MAX_ENERGY;
+        if ((super.MAX_ENERGY - super.energy) > enemy.getEnergy()){
+            super.energy += enemy.getEnergy(); 
+        } else{
+            super.energy = super.MAX_ENERGY;
         }
     }
 }

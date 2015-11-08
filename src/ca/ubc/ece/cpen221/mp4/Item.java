@@ -109,7 +109,7 @@ public abstract class Item {
      * @return current energy level
      */
     public int getEnergy() {
-        return energy;
+        return this.energy;
     }
     
     /**
