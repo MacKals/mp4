@@ -29,7 +29,7 @@ public class FoxAI extends AbstractAI {
             else if (item instanceof SlowLoris)     objective.edible(item);
             else if (item instanceof Rabbit)        objective.edible(item);
             else if (item instanceof Snake)         objective.edible(item);
-            else if (item instanceof Gnat)          objective.edible(item);
+            //else if (item instanceof Gnat)          objective.edible(item);
             
             else                                    objective.impartial(item);
             
