@@ -9,9 +9,11 @@ import ca.ubc.ece.cpen221.mp4.Direction;
 import ca.ubc.ece.cpen221.mp4.Item;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.commands.AttackCommand;
+import ca.ubc.ece.cpen221.mp4.commands.BreedCommand;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
+import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
 public class ObjectiveFunction {
 
@@ -73,10 +75,24 @@ public class ObjectiveFunction {
     }
 
     public Command conclusion() {
+        
+        Set<Direction> occupiedDirections = occupiedDirections(occupiedLocation);
+        
+        if (ACTOR instanceof ArenaAnimal) {
+            if (RELATIVE_ENERGY > 0.8 && occupiedDirections.size() < 4) {
+                
+                Set<Direction> freeDirections = invertDirections(occupiedDirections);
+                
+                for (Direction direction : freeDirections) {
+                    return new BreedCommand((ArenaAnimal) ACTOR, new Location(currentLocation, direction));
+                }
+            }   
+        }
+        
+        
 
         Vector movementVector = generateMovementVector(currentLocation);
         Set<Location> attackableLocations = attackableLocations(edibleLocations);
-                
         
         if (!attackableLocations.isEmpty() && attackDesire > movementVector.movementDesire()) {
             for (Item item : items) {
@@ -86,14 +102,25 @@ public class ObjectiveFunction {
             }
         }
 
-        Set<Direction> occupiedDirections = occupiedDirections(occupiedLocation);
         Direction bestDirection = movementVector.bestDirectionNotContaining(occupiedDirections);
-        if (bestDirection == null){
+        if (bestDirection == null) {
             return new WaitCommand();
         }
         return new MoveCommand(ACTOR, new Location(currentLocation, bestDirection));
     }
 
+    Set<Direction> invertDirections(Set<Direction> occupiedDirections) {
+        
+        Set<Direction> freeDirections = new HashSet<>();
+        
+        if (!occupiedDirections.contains(Direction.North)) freeDirections.add(Direction.North);
+        if (!occupiedDirections.contains(Direction.East)) freeDirections.add(Direction.East);
+        if (!occupiedDirections.contains(Direction.South)) freeDirections.add(Direction.South);
+        if (!occupiedDirections.contains(Direction.West)) freeDirections.add(Direction.West);
+
+        return freeDirections;
+    }
+    
     Set<Location> attackableLocations(Set<Location> locations) {
         
         Set<Direction> attackingDirections = occupiedDirections(locations);
@@ -106,6 +133,7 @@ public class ObjectiveFunction {
         
         return attackingLocations;
     }
+    
     
     Set<Direction> occupiedDirections(Set<Location> locations) {
 
