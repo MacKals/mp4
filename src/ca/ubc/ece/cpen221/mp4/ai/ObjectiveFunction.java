@@ -37,7 +37,7 @@ public class ObjectiveFunction {
         impartialWeight = 4;
 
         // for making eating disition
-        attackDesire = RELATIVE_ENERGY * 100;
+        attackDesire = RELATIVE_ENERGY * 10;
 
     }
 
