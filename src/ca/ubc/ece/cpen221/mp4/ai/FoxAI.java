@@ -17,7 +17,7 @@ public class FoxAI extends AbstractAI {
     @Override
     public Command getNextAction(ArenaWorld world, Actor actor) {
         
-        ObjectiveFunction objective = new ObjectiveFunction(actor, world); 
+        ObjectiveFunction objective = new ObjectiveFunction(actor, this, world); 
         
         Set<Item> visibleItemsSet = world.searchSurroundings(actor);
 

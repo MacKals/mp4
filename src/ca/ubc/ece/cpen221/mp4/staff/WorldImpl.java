@@ -15,7 +15,6 @@ import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.InvalidCommandException;
-import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
 /**
  * The implementation of the {@link World}.

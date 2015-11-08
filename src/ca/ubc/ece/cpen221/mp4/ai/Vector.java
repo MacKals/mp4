@@ -33,16 +33,20 @@ public class Vector {
         int yCoordinate = location.getY() - origin.getY();
         
         double squaredDistance = (xCoordinate * xCoordinate) + (yCoordinate * yCoordinate);
-        double distanceWeight = weight / Math.sqrt(squaredDistance);
+        double distanceWeight = weight / squaredDistance;
         
-        double intermediateX = xCoordinate * distanceWeight;
-        double intermediateY = yCoordinate * distanceWeight;
-
-        x += intermediateX;
-        y += intermediateY;
-        
+        x += xCoordinate * distanceWeight;
+        y -= yCoordinate * distanceWeight;
+        boolean test = true;
+        test = !test;
     }
 
+    //For search machinery
+    void add(int XValue, int YValue) {
+        x = XValue;
+        y = YValue;
+    }
+    
     double movementDesire() {
         return Math.sqrt(x * x + y * y);
     }
@@ -66,12 +70,14 @@ public class Vector {
         // order of preference
         // (ie, starting with the direction closest to the direction vector)
 
-        if (magnitude(x) > magnitude(y)) {
+        if (Math.abs(x) > Math.abs(y)) {
+            
             if (x > 0) {
                 directions.add(Direction.East);
             } else {
                 directions.add(Direction.West);
             }
+            
             if (y > 0) {
                 directions.add(Direction.North);
                 directions.add(Direction.South);
@@ -96,12 +102,5 @@ public class Vector {
         }
 
         return directions;
-    }
-    
-    private double magnitude(double intToCheck) {
-        if (intToCheck < 0) {
-            return -intToCheck;
-        }
-        return intToCheck;
     }
 }

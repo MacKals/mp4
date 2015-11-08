@@ -30,7 +30,7 @@ public class Main {
 	static final int SPACES_PER_GRASS = 7;
 	
 	static final int INITIAL_GRASS = X_DIM * Y_DIM / SPACES_PER_GRASS;
-	static final int INITIAL_GNATS = INITIAL_GRASS / 4;
+	static final int INITIAL_GNATS = INITIAL_GRASS /100;// 4;
 	
 	static final int INITIAL_RABBI = INITIAL_GRASS / 4;
 	static final int INITIAL_FOXES = INITIAL_GRASS / 32;
@@ -76,7 +76,6 @@ public class Main {
 
 	public void initializeWorld() {
 	    int count = 0;
-        
 	    
 	    final Gardener worldGardener = new Gardener();
 	    world.addActor(worldGardener);
@@ -85,25 +84,24 @@ public class Main {
             
             itemsAreBeingAdded = false;
             
-            
             if (count < INITIAL_GRASS) add(new Grass(   loc()));
-            if (count < INITIAL_GNATS) add(new Gnat(    loc()));
+//            if (count < INITIAL_GNATS) add(new Gnat(    loc()));
             
             if (count < INITIAL_FOXES) add(new Fox(         new FoxAI(),        loc()));
             if (count < INITIAL_RABBI) add(new Rabbit(      new RabbitAI(),     loc()));
             
-            if (count < INITIAL_HAWKS) add(new Hawk(        new RabbitAI(),     loc()));
-            if (count < INITIAL_SLOWL) add(new SlowLoris(   new RabbitAI(),     loc()));
-            if (count < INITIAL_SNAKE) add(new Snake(       new RabbitAI(),     loc()));
-            
-            if (count < INITIAL_HOTAI) add(new HotAirBalloon(       new HotAirBalloonAI(),      loc()));
-            if (count < INITIAL_MARAU) add(new Marauder(            new MarauderAI(),           loc()));
-            if (count < INITIAL_MOTOR) add(new Motorcycle(          new MotorcycleAI(),         loc()));
-            
-            if (count < INITIAL_STEVE) add(new Steve(   new SteveAI(),          loc()));
-            if (count < INITIAL_WITHE) add(new Wither(  new WitherAI(),         loc()));
-            if (count < INITIAL_TREES) add(new Tree(                            loc()));
-            
+//            if (count < INITIAL_HAWKS) add(new Hawk(        new RabbitAI(),     loc()));
+//            if (count < INITIAL_SLOWL) add(new SlowLoris(   new RabbitAI(),     loc()));
+//            if (count < INITIAL_SNAKE) add(new Snake(       new RabbitAI(),     loc()));
+//            
+//            if (count < INITIAL_HOTAI) add(new HotAirBalloon(       new HotAirBalloonAI(),      loc()));
+//            if (count < INITIAL_MARAU) add(new Marauder(            new MarauderAI(),           loc()));
+//            if (count < INITIAL_MOTOR) add(new Motorcycle(          new MotorcycleAI(),         loc()));
+//            
+//            if (count < INITIAL_STEVE) add(new Steve(               new SteveAI(),          loc()));
+//            if (count < INITIAL_WITHE) add(new Wither(              new WitherAI(),         loc()));
+//            if (count < INITIAL_TREES) add(new Tree(                                        loc()));
+//            
             count++;
         }
 	}

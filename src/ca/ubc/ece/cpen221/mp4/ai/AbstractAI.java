@@ -13,8 +13,18 @@ import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.animals.*;
 
-public class AbstractAI implements AI {
+public abstract class AbstractAI implements AI {
 
+    protected Goal searchingGoal;
+    
+    public void setSearchGoal(Goal direction) {
+        searchingGoal = direction;
+    }
+    
+    public Goal getSearchGoal() {
+        return searchingGoal;
+    }
+    
 	public Direction oppositeDir(Direction dir) { 
 	    // returns opposite direction of direction dir
 		

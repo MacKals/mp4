@@ -8,6 +8,8 @@ import ca.ubc.ece.cpen221.mp4.ArenaWorld;
 import ca.ubc.ece.cpen221.mp4.Direction;
 import ca.ubc.ece.cpen221.mp4.Item;
 import ca.ubc.ece.cpen221.mp4.Location;
+import ca.ubc.ece.cpen221.mp4.Util;
+import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.commands.AttackCommand;
 import ca.ubc.ece.cpen221.mp4.commands.BreedCommand;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
@@ -26,18 +28,21 @@ public class ObjectiveFunction {
 
     private double attackDesire;
 
+    private double MINIMUM_DESIRE_FOR_VECTOR_TO_TAKE_EFFECT = 10;
+    
     private void updateParameters() {
 
         // for making movement disition
-        repulsionWeight = -10;
-        foodWeight = ((int) (4 / RELATIVE_ENERGY));
-        impartialWeight = -10;
+        repulsionWeight = -5;
+        foodWeight = ((int) (10 / RELATIVE_ENERGY));
+        impartialWeight = -1;
 
         // for making eating disition
-        attackDesire = RELATIVE_ENERGY * 100;
+        attackDesire = 1000 / RELATIVE_ENERGY;
     }
 
-    public ObjectiveFunction(Actor actor, ArenaWorld world) {
+    public ObjectiveFunction(Actor actor, AbstractAI actorAI, ArenaWorld world) {
+        ACTOR_AI = actorAI;
         ACTOR = actor;
         WORLD = world;
         RELATIVE_ENERGY = (double) actor.getEnergy() / actor.getMaxEnergy();
@@ -46,12 +51,13 @@ public class ObjectiveFunction {
     }
 
     private Actor ACTOR; // fractional energy left
+    private AbstractAI ACTOR_AI; 
     private ArenaWorld WORLD;
     private double RELATIVE_ENERGY; // fractional energy left
     private Location currentLocation; // other fields we want to keep track of
                                       // that will impact the objective function
 
-    private Set<Location> occupiedLocation = new HashSet<>();
+    private Set<Location> occupiedLocations = new HashSet<>();
     private Set<Location> edibleLocations = new HashSet<>();
     private Set<Location> preditorLocations = new HashSet<>();
 
@@ -60,39 +66,36 @@ public class ObjectiveFunction {
     void edible(Item item) {
 
         edibleLocations.add(item.getLocation());
-        occupiedLocation.add(item.getLocation());
+        occupiedLocations.add(item.getLocation());
         items.add(item);
     }
 
     void bad(Item item) {
 
         preditorLocations.add(item.getLocation());
-        occupiedLocation.add(item.getLocation());
+        occupiedLocations.add(item.getLocation());
     }
 
     void impartial(Item item) {
-        occupiedLocation.add(item.getLocation());
+        occupiedLocations.add(item.getLocation());
     }
 
     public Command conclusion() {
         
-        Set<Direction> occupiedDirections = occupiedDirections(occupiedLocation);
+        Set<Direction> occupiedDirections = occupiedDirections(occupiedLocations);
         
         if (ACTOR instanceof ArenaAnimal) {
             if (RELATIVE_ENERGY > 0.8 && occupiedDirections.size() < 4) {
                 
-                Set<Direction> freeDirections = invertDirections(occupiedDirections);
+                Location newLocation = Util.getRandomEmptyAdjacentLocation((World) WORLD, currentLocation);
                 
-                for (Direction direction : freeDirections) {
-                    return new BreedCommand((ArenaAnimal) ACTOR, new Location(currentLocation, direction));
-                }
+                return new BreedCommand((ArenaAnimal) ACTOR, newLocation);
             }   
         }
         
-        
-
         Vector movementVector = generateMovementVector(currentLocation);
         Set<Location> attackableLocations = attackableLocations(edibleLocations);
+        
         
         if (!attackableLocations.isEmpty() && attackDesire > movementVector.movementDesire()) {
             for (Item item : items) {
@@ -101,33 +104,49 @@ public class ObjectiveFunction {
                 }
             }
         }
+        
+        Direction bestDirection;
+        
+        if (movementVector.movementDesire() < MINIMUM_DESIRE_FOR_VECTOR_TO_TAKE_EFFECT) {
 
-        Direction bestDirection = movementVector.bestDirectionNotContaining(occupiedDirections);
+            Vector searchVector = new Vector(currentLocation, WORLD);
+
+            Goal searchGoal = ACTOR_AI.getSearchGoal();
+            
+            switch (searchGoal) {
+            case NE:
+                searchVector.add(WORLD.getWidth(), 0);
+            case SE:
+                searchVector.add(WORLD.getWidth(), WORLD.getHeight());
+            case SW: 
+                searchVector.add(0, WORLD.getHeight());
+            case NW:
+                searchVector.add(0, 0);
+            case Centre:
+                searchVector.add(WORLD.getWidth() / 2 , WORLD.getHeight() / 2);
+            }
+            
+            bestDirection = searchVector.bestDirectionNotContaining(occupiedDirections);
+                    
+        } else {
+            
+            bestDirection = movementVector.bestDirectionNotContaining(occupiedDirections);
+           
+        }
+
         if (bestDirection == null) {
             return new WaitCommand();
         }
+        
         return new MoveCommand(ACTOR, new Location(currentLocation, bestDirection));
     }
 
-    Set<Direction> invertDirections(Set<Direction> occupiedDirections) {
-        
-        Set<Direction> freeDirections = new HashSet<>();
-        
-        if (!occupiedDirections.contains(Direction.North)) freeDirections.add(Direction.North);
-        if (!occupiedDirections.contains(Direction.East)) freeDirections.add(Direction.East);
-        if (!occupiedDirections.contains(Direction.South)) freeDirections.add(Direction.South);
-        if (!occupiedDirections.contains(Direction.West)) freeDirections.add(Direction.West);
-
-        return freeDirections;
-    }
     
-    Set<Location> attackableLocations(Set<Location> locations) {
-        
-        Set<Direction> attackingDirections = occupiedDirections(locations);
+    private Set<Location> attackableLocations(Set<Location> locations) {
         
         Set<Location> attackingLocations = new HashSet<>();
         
-        for (Direction attackingDirection : attackingDirections) {
+        for (Direction attackingDirection : occupiedDirections(locations)) {
             attackingLocations.add( new Location(currentLocation, attackingDirection) );
         }
         
@@ -135,38 +154,36 @@ public class ObjectiveFunction {
     }
     
     
-    Set<Direction> occupiedDirections(Set<Location> locations) {
+    private Set<Direction> occupiedDirections(Set<Location> locations) {
 
         Set<Direction> victims = new HashSet<>();
 
-        if (locations.contains(stepNorth()))
-            victims.add(Direction.North);
-        if (locations.contains(stepEast()))
-            victims.add(Direction.East);
-        if (locations.contains(stepSouth()))
-            victims.add(Direction.South);
-        if (locations.contains(stepWest()))
-            victims.add(Direction.West);
-
+        if (locations.contains(stepNorth()))  victims.add(Direction.North);
+        if (locations.contains(stepEast()))   victims.add(Direction.East);
+        if (locations.contains(stepSouth()))  victims.add(Direction.South);
+        if (locations.contains(stepWest()))   victims.add(Direction.West);
+        
         return victims;
     }
-
+    
+    
     private Location stepNorth() {
         return new Location(currentLocation, Direction.North);
     }
-
+    
     private Location stepEast() {
         return new Location(currentLocation, Direction.East);
     }
-
+    
     private Location stepSouth() {
         return new Location(currentLocation, Direction.South);
     }
-
+    
     private Location stepWest() {
         return new Location(currentLocation, Direction.West);
     }
-
+    
+    
     private Vector generateMovementVector(Location currentLocation) {
 
         // define vector that sums weighted component vectors of object around
@@ -184,11 +201,10 @@ public class ObjectiveFunction {
         }
 
         // repelled from occupied location
-        for (Location occupied : occupiedLocation) {
+        for (Location occupied : occupiedLocations) {
             vector.add(occupied, impartialWeight);
         }
-
+        
         return vector;
-
     }
 }
