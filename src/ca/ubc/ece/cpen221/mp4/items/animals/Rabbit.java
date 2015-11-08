@@ -48,9 +48,9 @@ public class Rabbit extends ArenaAnimal {
 	 *            : the location where this rabbit will be created
 	 */
 	public Rabbit(AI rabbitAI, Location initialLocation) {
-		ai = rabbitAI;
-		location = initialLocation;
-		energy = INITIAL_ENERGY;
+		this.ai = rabbitAI;
+		this.location = initialLocation;
+		this.energy = INITIAL_ENERGY;
 	}
 
 	@Override

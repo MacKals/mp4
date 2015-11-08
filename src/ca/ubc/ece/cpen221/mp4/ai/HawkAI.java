@@ -1,32 +1,22 @@
 package ca.ubc.ece.cpen221.mp4.ai;
 
-import java.util.Iterator;
 import java.util.Set;
 
 import ca.ubc.ece.cpen221.mp4.Actor;
 import ca.ubc.ece.cpen221.mp4.ArenaWorld;
-import ca.ubc.ece.cpen221.mp4.Direction;
 import ca.ubc.ece.cpen221.mp4.Item;
-import ca.ubc.ece.cpen221.mp4.Location;
-import ca.ubc.ece.cpen221.mp4.Util;
-import ca.ubc.ece.cpen221.mp4.World;
-import ca.ubc.ece.cpen221.mp4.commands.BreedCommand;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
-import ca.ubc.ece.cpen221.mp4.commands.AttackCommand;
-import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
-import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
-import ca.ubc.ece.cpen221.mp4.items.Grass;
-import ca.ubc.ece.cpen221.mp4.items.animals.*;
+import ca.ubc.ece.cpen221.mp4.items.animals.Fox;
+import ca.ubc.ece.cpen221.mp4.items.animals.Gnat;
+import ca.ubc.ece.cpen221.mp4.items.animals.Rabbit;
+import ca.ubc.ece.cpen221.mp4.items.animals.Snake;
 import ca.ubc.ece.cpen221.mp4.items.minecraft.Wither;
 
-/**
- * Your Fox AI.
- */
-public class FoxAI extends AbstractAI {
+public class HawkAI extends AbstractAI{
     
     private int MOVING_RANGE = 0;
     
-    public FoxAI() {
+    public HawkAI() {
         
     }
     
@@ -49,15 +39,11 @@ public class FoxAI extends AbstractAI {
 
         for (Item item : visibleItemsSet) {
             
-            if (item instanceof Wither) {
-                objective.bad(item);
-            } else if (item instanceof SlowLoris) {
+            if (item instanceof Snake) {
                 objective.edible(item);
             } else if (item instanceof Rabbit) {
                 objective.edible(item);
-            } else if (item instanceof Snake) {
-                objective.edible(item);
-            }else {
+            } else {
                 objective.impartial(item);
             }
         }
@@ -65,4 +51,3 @@ public class FoxAI extends AbstractAI {
         return objective.conclusion();
     }
 }
-
