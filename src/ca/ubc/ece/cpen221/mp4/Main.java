@@ -96,7 +96,7 @@ public class Main {
             if (count < INITIAL_SLOWL) add(new SlowLoris(   new RabbitAI(),     loc()));
             if (count < INITIAL_SNAKE) add(new Snake(       new RabbitAI(),     loc()));
             
-            if (count < INITIAL_HOTAI) add(new HotAirBalloon(       new HotAirBalloonAI(),      loc()));
+            if (count < INITIAL_HOTAI) add(new HotAirBalloon(       new VehicleAI(),      loc()));
             if (count < INITIAL_MARAU) add(new Marauder(            new VehicleAI(),           loc()));
             if (count < INITIAL_MOTOR) add(new Motorcycle(          new VehicleAI(),         loc()));
             

@@ -25,8 +25,8 @@ public class HotAirBalloon extends Actor {
     super.MOVING_RANGE = 1;
     }
     
-    public HotAirBalloon(AI hotAirBalloonAI, Location initialLocation) {
-        this.ai = hotAirBalloonAI;
+    public HotAirBalloon(AI vehicleAI, Location initialLocation) {
+        this.ai = vehicleAI;
         this.location = initialLocation;
 
         this.energy = INITIAL_ENERGY;
