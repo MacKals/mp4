@@ -14,8 +14,9 @@ public final class Location {
 
 	public Location(int x, int y) {
 		this.x = x;
-		this.y = y;
+		this.y = y;	
 	}
+	
 
 	/**
 	 * Returns a new {@link Location} that is one space away from the specified
@@ -103,5 +104,7 @@ public final class Location {
 	public int getDistance(Location otherLocation) {
 		return Math.max(Math.abs(this.getX() - otherLocation.getX()), Math.abs(this.getY() - otherLocation.getY()));
 	}
+	
+	
 
 }

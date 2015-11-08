@@ -30,5 +30,6 @@ public class RabbitAI extends AbstractAI {
         }
         
         return objective.conclusion();
+        
     }
 }
