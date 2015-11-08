@@ -90,6 +90,7 @@ public class Main {
             if (count < INITIAL_FOXES) add(new Fox(         new FoxAI(),        loc()));
             if (count < INITIAL_RABBI) add(new Rabbit(      new RabbitAI(),     loc()));
             
+<<<<<<< HEAD
 //            if (count < INITIAL_HAWKS) add(new Hawk(        new RabbitAI(),     loc()));
 //            if (count < INITIAL_SLOWL) add(new SlowLoris(   new RabbitAI(),     loc()));
 //            if (count < INITIAL_SNAKE) add(new Snake(       new RabbitAI(),     loc()));
@@ -102,6 +103,20 @@ public class Main {
 //            if (count < INITIAL_WITHE) add(new Wither(              new WitherAI(),         loc()));
 //            if (count < INITIAL_TREES) add(new Tree(                                        loc()));
 //            
+=======
+            if (count < INITIAL_HAWKS) add(new Hawk(        new RabbitAI(),     loc()));
+            if (count < INITIAL_SLOWL) add(new SlowLoris(   new RabbitAI(),     loc()));
+            if (count < INITIAL_SNAKE) add(new Snake(       new RabbitAI(),     loc()));
+            
+            if (count < INITIAL_HOTAI) add(new HotAirBalloon(       new VehicleAI(),      loc()));
+            if (count < INITIAL_MARAU) add(new Marauder(            new VehicleAI(),           loc()));
+            if (count < INITIAL_MOTOR) add(new Motorcycle(          new VehicleAI(),         loc()));
+            
+            if (count < INITIAL_STEVE) add(new Steve(   new SteveAI(),          loc()));
+            if (count < INITIAL_WITHE) add(new Wither(  new WitherAI(),         loc()));
+            if (count < INITIAL_TREES) add(new Tree(                            loc()));
+            
+>>>>>>> e5b98b269cfe32a2aa2b1821a5bf63ec6eae3d39
             count++;
         }
 	}

@@ -21,8 +21,12 @@ public class Tree extends Item {
     
     }
     
-    public Tree(Location location) {
-        this.location = location;
+    public Tree(Location initialLocation) {
+        this.location = initialLocation;
+        
+        //adjacent locations
+        
+        this.energy = MAX_ENERGY;
         this.isDead = false;
     }
   
