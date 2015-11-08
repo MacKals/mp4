@@ -28,8 +28,8 @@ public class ObjectiveFunction {
 
     private double attackDesire;
 
-    private double MINIMUM_DESIRE_FOR_VECTOR_TO_TAKE_EFFECT = .3;
-    
+    private double MINIMUM_DESIRE_FOR_VECTOR_TO_TAKE_EFFECT = 1;
+
     private void updateParameters() {
 
         // for making movement disition
@@ -51,7 +51,7 @@ public class ObjectiveFunction {
     }
 
     private Actor ACTOR; // fractional energy left
-    private AbstractAI ACTOR_AI; 
+    private AbstractAI ACTOR_AI;
     private ArenaWorld WORLD;
     private double RELATIVE_ENERGY; // fractional energy left
     private Location currentLocation; // other fields we want to keep track of
@@ -81,22 +81,21 @@ public class ObjectiveFunction {
     }
 
     public Command conclusion() {
-        
+
         Set<Direction> occupiedDirections = occupiedDirections(occupiedLocations);
-        
+
         if (ACTOR instanceof ArenaAnimal) {
             if (RELATIVE_ENERGY > 0.7 && occupiedDirections.size() < 4) {
-                
+
                 Location newLocation = Util.getRandomEmptyAdjacentLocation((World) WORLD, currentLocation);
-                
+
                 return new BreedCommand((ArenaAnimal) ACTOR, newLocation);
-            }   
+            }
         }
-        
+
         Vector movementVector = generateMovementVector(currentLocation);
         Set<Location> attackableLocations = attackableLocations(edibleLocations);
-        
-        
+
         if (!attackableLocations.isEmpty() && attackDesire > movementVector.movementDesire()) {
             for (Item item : items) {
                 if (attackableLocations.contains(item.getLocation())) {
@@ -104,92 +103,96 @@ public class ObjectiveFunction {
                 }
             }
         }
-        
+
         Direction bestDirection;
-        
-       /* if (movementVector.movementDesire() < MINIMUM_DESIRE_FOR_VECTOR_TO_TAKE_EFFECT) {
+
+        if (movementVector.movementDesire() < MINIMUM_DESIRE_FOR_VECTOR_TO_TAKE_EFFECT) {
 
             Vector searchVector = new Vector(currentLocation, WORLD);
 
             Goal searchGoal = ACTOR_AI.getSearchGoal();
-            
+
             switch (searchGoal) {
             case NE:
                 searchVector.add(WORLD.getWidth(), 0);
+                break;
             case SE:
                 searchVector.add(WORLD.getWidth(), WORLD.getHeight());
-            case SW: 
+                break;
+            case SW:
                 searchVector.add(0, WORLD.getHeight());
+                break;
             case NW:
                 searchVector.add(0, 0);
+                break;
             case Centre:
-                searchVector.add(WORLD.getWidth() / 2 , WORLD.getHeight() / 2);
+                searchVector.add(WORLD.getWidth() / 2, WORLD.getHeight() / 2);
             }
-            
+
             bestDirection = searchVector.bestDirectionNotContaining(occupiedDirections);
-                    
-        } else {*/
-            
+
+        } else {
+
             bestDirection = movementVector.bestDirectionNotContaining(occupiedDirections);
-           
-     //   }
+
+        }
 
         if (bestDirection == null) {
             return new WaitCommand();
         }
-        
+
         return new MoveCommand(ACTOR, new Location(currentLocation, bestDirection));
     }
 
-    
     private Set<Location> attackableLocations(Set<Location> locations) {
-        
+
         Set<Location> attackingLocations = new HashSet<>();
-        
+
         for (Direction attackingDirection : occupiedDirections(locations)) {
-            attackingLocations.add( new Location(currentLocation, attackingDirection) );
+            attackingLocations.add(new Location(currentLocation, attackingDirection));
         }
-        
+
         return attackingLocations;
     }
-    
-    
+
     private Set<Direction> occupiedDirections(Set<Location> locations) {
 
         Set<Direction> victims = new HashSet<>();
 
-        if (locations.contains(stepNorth()))  victims.add(Direction.North);
-        if (locations.contains(stepEast()))   victims.add(Direction.East);
-        if (locations.contains(stepSouth()))  victims.add(Direction.South);
-        if (locations.contains(stepWest()))   victims.add(Direction.West);
-        
+        if (locations.contains(stepNorth()))
+            victims.add(Direction.North);
+        if (locations.contains(stepEast()))
+            victims.add(Direction.East);
+        if (locations.contains(stepSouth()))
+            victims.add(Direction.South);
+        if (locations.contains(stepWest()))
+            victims.add(Direction.West);
+
         return victims;
     }
-    
-    
+
     private Location stepNorth() {
         return new Location(currentLocation, Direction.North);
     }
-    
+
     private Location stepEast() {
         return new Location(currentLocation, Direction.East);
     }
-    
+
     private Location stepSouth() {
         return new Location(currentLocation, Direction.South);
     }
-    
+
     private Location stepWest() {
         return new Location(currentLocation, Direction.West);
     }
-    
-    
+
     private Vector generateMovementVector(Location currentLocation) {
 
         // define vector that sums weighted component vectors of object around
         // it.
         Vector vector = new Vector(currentLocation, WORLD);
-        
+
         // attracted to food
         for (Location food : edibleLocations) {
             vector.add(food, foodWeight);
@@ -204,7 +207,7 @@ public class ObjectiveFunction {
         for (Location occupied : occupiedLocations) {
             vector.add(occupied, impartialWeight);
         }
-        
+
         return vector;
     }
 }
