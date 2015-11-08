@@ -28,7 +28,7 @@ public class ObjectiveFunction {
 
     private double attackDesire;
 
-    private double MINIMUM_DESIRE_FOR_VECTOR_TO_TAKE_EFFECT = 10;
+    private double MINIMUM_DESIRE_FOR_VECTOR_TO_TAKE_EFFECT = .3;
     
     private void updateParameters() {
 
@@ -85,7 +85,7 @@ public class ObjectiveFunction {
         Set<Direction> occupiedDirections = occupiedDirections(occupiedLocations);
         
         if (ACTOR instanceof ArenaAnimal) {
-            if (RELATIVE_ENERGY > 0.8 && occupiedDirections.size() < 4) {
+            if (RELATIVE_ENERGY > 0.7 && occupiedDirections.size() < 4) {
                 
                 Location newLocation = Util.getRandomEmptyAdjacentLocation((World) WORLD, currentLocation);
                 
@@ -107,7 +107,7 @@ public class ObjectiveFunction {
         
         Direction bestDirection;
         
-        if (movementVector.movementDesire() < MINIMUM_DESIRE_FOR_VECTOR_TO_TAKE_EFFECT) {
+       /* if (movementVector.movementDesire() < MINIMUM_DESIRE_FOR_VECTOR_TO_TAKE_EFFECT) {
 
             Vector searchVector = new Vector(currentLocation, WORLD);
 
@@ -128,11 +128,11 @@ public class ObjectiveFunction {
             
             bestDirection = searchVector.bestDirectionNotContaining(occupiedDirections);
                     
-        } else {
+        } else {*/
             
             bestDirection = movementVector.bestDirectionNotContaining(occupiedDirections);
            
-        }
+     //   }
 
         if (bestDirection == null) {
             return new WaitCommand();

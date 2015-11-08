@@ -24,23 +24,6 @@ public class RabbitAI extends AbstractAI {
     @Override
     public Command getNextAction(ArenaWorld world, Actor actor) {
         
-        if (getSearchGoal() == null) {
-            
-            Goal goal  = Goal.Centre;
-            
-            Random generator = new Random();
-            
-            switch (generator.nextInt(5)) {
-            case 0: goal = Goal.NE;
-            case 1: goal = Goal.SE;
-            case 2: goal = Goal.SW;
-            case 3: goal = Goal.NW;
-            case 4: goal = Goal.Centre;
-            }
-
-            setSearchGoal(goal);
-        }
-        
         ObjectiveFunction objective = new ObjectiveFunction(actor, this, world); 
         
         Set<Item> visibleItemsSet = world.searchSurroundings(actor);
