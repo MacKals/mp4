@@ -17,8 +17,6 @@ public abstract class Actor extends Item {
     protected int VIEW_RANGE;
     protected int INITIAL_ENERGY;
     
-    protected boolean isDead = false;
-    
     /**
      * Returns the cooldown period between two consecutive actions. This
      * represents the number of steps passed between two actions.
@@ -80,6 +78,11 @@ public abstract class Actor extends Item {
 
     //TODO: comment
     public void attack(Item enemy) {
-       enemy.loseEnergy(this.getStrength());
+        if ((this.MAX_ENERGY - this.energy) > enemy.getEnergy()){
+            this.energy += enemy.getEnergy(); 
+        }
+        else{
+            this.energy = this.MAX_ENERGY;
+        }
     }
 }

@@ -46,7 +46,7 @@ public class Gnat extends ArenaAnimal {
 	 */
 	public Gnat(Location initialLocation) {
 		super.location = initialLocation;
-		this.isDead = false;
+		this.energy = 100;
 	}
 	
 	@Override
@@ -57,7 +57,7 @@ public class Gnat extends ArenaAnimal {
 	
 	@Override
 	public void loseEnergy(int energy) {
-		this.isDead = true; // Dies if it loses energy.
+		energy = 0; // Dies if it loses energy.
 	}
 
 	@Override
