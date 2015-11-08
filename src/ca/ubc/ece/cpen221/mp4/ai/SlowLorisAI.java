@@ -34,7 +34,7 @@ public class SlowLorisAI extends AbstractAI{
 
         initFromActor(actor);
         
-        ObjectiveFunction objective = new ObjectiveFunction(actor); 
+        ObjectiveFunction objective = new ObjectiveFunction(actor, world); 
         
         Set<Item> visibleItemsSet = world.searchSurroundings(actor);
 

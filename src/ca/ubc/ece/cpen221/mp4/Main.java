@@ -6,6 +6,12 @@ import ca.ubc.ece.cpen221.mp4.ai.*;
 import ca.ubc.ece.cpen221.mp4.items.Gardener;
 import ca.ubc.ece.cpen221.mp4.items.Grass;
 import ca.ubc.ece.cpen221.mp4.items.animals.*;
+import ca.ubc.ece.cpen221.mp4.items.minecraft.Steve;
+import ca.ubc.ece.cpen221.mp4.items.minecraft.Tree;
+import ca.ubc.ece.cpen221.mp4.items.minecraft.Wither;
+import ca.ubc.ece.cpen221.mp4.items.vehicles.HotAirBalloon;
+import ca.ubc.ece.cpen221.mp4.items.vehicles.Marauder;
+import ca.ubc.ece.cpen221.mp4.items.vehicles.Motorcycle;
 import ca.ubc.ece.cpen221.mp4.staff.WorldImpl;
 import ca.ubc.ece.cpen221.mp4.staff.WorldUI;
 
@@ -33,13 +39,22 @@ public class Main {
 	static final int INITIAL_SLOWL = INITIAL_GRASS / 40;
 	static final int INITIAL_SNAKE = INITIAL_GRASS / 32;
 	
+	static final int INITIAL_HOTAI = INITIAL_GRASS / 32;
+	static final int INITIAL_MARAU = INITIAL_GRASS / 32;
+	static final int INITIAL_MOTOR = INITIAL_GRASS / 32;
+	
+	static final int INITIAL_STEVE = INITIAL_GRASS / 32;
+	static final int INITIAL_WITHE = INITIAL_GRASS / 32;
+	static final int INITIAL_TREES = INITIAL_GRASS / 32;
+	
+	
 	//not in use
-	static final int INITIAL_CARS = INITIAL_GRASS / 100;
-	static final int INITIAL_TRUCKS = INITIAL_GRASS / 150;
-	static final int INITIAL_MOTORCYCLES = INITIAL_GRASS / 64;
-	static final int INITIAL_MANS = INITIAL_GRASS / 150;
-	static final int INITIAL_WOMANS = INITIAL_GRASS / 100;
-	static final int INITIAL_HUNTERS = INITIAL_GRASS / 150;
+//	static final int INITIAL_CARS = INITIAL_GRASS / 100;
+//	static final int INITIAL_TRUCKS = INITIAL_GRASS / 150;
+//	static final int INITIAL_MOTORCYCLES = INITIAL_GRASS / 64;
+//	static final int INITIAL_MANS = INITIAL_GRASS / 150;
+//	static final int INITIAL_WOMANS = INITIAL_GRASS / 100;
+//	static final int INITIAL_HUNTERS = INITIAL_GRASS / 150;
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -75,6 +90,14 @@ public class Main {
             if (count < INITIAL_HAWKS) add(new Hawk(        new RabbitAI(),     loc()));
             if (count < INITIAL_SLOWL) add(new SlowLoris(   new RabbitAI(),     loc()));
             if (count < INITIAL_SNAKE) add(new Snake(       new RabbitAI(),     loc()));
+            
+            if (count < INITIAL_HOTAI) add(new HotAirBalloon(       new HotAirBalloonAI(),      loc()));
+            if (count < INITIAL_MARAU) add(new Marauder(            new MarauderAI(),           loc()));
+            if (count < INITIAL_MOTOR) add(new Motorcycle(          new MotorcycleAI(),         loc()));
+            
+            if (count < INITIAL_STEVE) add(new Steve(   new SteveAI(),          loc()));
+            if (count < INITIAL_WITHE) add(new Wither(  new WitherAI(),         loc()));
+            if (count < INITIAL_TREES) add(new Tree(                            loc()));
             
             count++;
         }
