@@ -1,6 +1,7 @@
 package ca.ubc.ece.cpen221.mp4.ai;
 
 import java.util.Iterator;
+import java.util.Random;
 import java.util.Set;
 
 import ca.ubc.ece.cpen221.mp4.Actor;
@@ -15,48 +16,70 @@ import ca.ubc.ece.cpen221.mp4.items.animals.*;
 
 public abstract class AbstractAI implements AI {
 
-    protected Goal searchingGoal;
-    
-    public void setSearchGoal(Goal direction) {
-        searchingGoal = direction;
+    AbstractAI() {
+        setNewSearchGoal();
     }
     
+    protected Goal searchingGoal;
+
+    public void setNewSearchGoal() {
+
+        Random generator = new Random();
+
+        switch (generator.nextInt(5)) {
+        case 0:
+            searchingGoal = Goal.NE;
+        case 1:
+            searchingGoal = Goal.SE;
+        case 2:
+            searchingGoal = Goal.SW;
+        case 3:
+            searchingGoal = Goal.NW;
+        case 4:
+            searchingGoal = Goal.Centre;
+        }
+    }
+
     public Goal getSearchGoal() {
         return searchingGoal;
     }
-    
-	public Direction oppositeDir(Direction dir) { 
-	    // returns opposite direction of direction dir
-		
-	    if (dir == Direction.East)         	return Direction.West;
-		else if (dir == Direction.West)     return Direction.East;
-		else if (dir == Direction.South)    return Direction.North;
-		else                      			return Direction.South;
-		
-	}
 
-	public boolean isLocationEmpty(ArenaWorld world, ArenaAnimal animal, Location location) { 
-	    // returns true if location is empty
-		
-	    if (!Util.isValidLocation(world, location)) {
-			return false;
-		}
-	    
-		Set<Item> possibleMoves = world.searchSurroundings(animal);
-		Iterator<Item> it = possibleMoves.iterator();
-		
-		while (it.hasNext()) {
-			Item item = it.next();
-			if (item.getLocation().equals(location)) {
-				return false;
-			}
-		}
-		
-		return true;
-	}
+    public Direction oppositeDir(Direction dir) {
+        // returns opposite direction of direction dir
 
-	@Override
-	public Command getNextAction(ArenaWorld world, Actor actor) {
-		return new WaitCommand();
-	}
+        if (dir == Direction.East)
+            return Direction.West;
+        else if (dir == Direction.West)
+            return Direction.East;
+        else if (dir == Direction.South)
+            return Direction.North;
+        else
+            return Direction.South;
+
+    }
+
+    public boolean isLocationEmpty(ArenaWorld world, ArenaAnimal animal, Location location) {
+        // returns true if location is empty
+
+        if (!Util.isValidLocation(world, location)) {
+            return false;
+        }
+
+        Set<Item> possibleMoves = world.searchSurroundings(animal);
+        Iterator<Item> it = possibleMoves.iterator();
+
+        while (it.hasNext()) {
+            Item item = it.next();
+            if (item.getLocation().equals(location)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    @Override
+    public Command getNextAction(ArenaWorld world, Actor actor) {
+        return new WaitCommand();
+    }
 }
