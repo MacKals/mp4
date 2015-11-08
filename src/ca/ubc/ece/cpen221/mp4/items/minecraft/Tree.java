@@ -8,6 +8,8 @@ import ca.ubc.ece.cpen221.mp4.Util;
 
 public class Tree extends Item {
 
+    private boolean isDead;
+    
     { 
         //All item properties
     super.NAME = "Tree";
@@ -17,6 +19,11 @@ public class Tree extends Item {
     super.MAX_ENERGY = 1000;
     super.STRENGTH = 60;
     
+    }
+    
+    public Tree(Location location) {
+        this.location = location;
+        this.isDead = false;
     }
   
 }
