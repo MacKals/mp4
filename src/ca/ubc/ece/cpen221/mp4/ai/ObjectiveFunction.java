@@ -12,6 +12,7 @@ import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.commands.AttackCommand;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
+import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 
 public class ObjectiveFunction {
 
@@ -41,6 +42,7 @@ public class ObjectiveFunction {
         ACTOR = actor;
         RELATIVE_ENERGY = (double) actor.getEnergy() / actor.getMaxEnergy();
         currentLocation = actor.getLocation();
+        updateParameters();
     }
 
     private Actor ACTOR; // fractional energy left
@@ -72,67 +74,75 @@ public class ObjectiveFunction {
         occupiedLocation.add(item.getLocation());
     }
 
-    Command conclusion() {
-        
+    public Command conclusion() {
+
         Vector movementVector = generateMovementVector(currentLocation);
         Set<Direction> potentialVictims = occupiedDirections(edibleLocations);
-        
+
         if (!potentialVictims.isEmpty() && attackDesire > movementVector.movementDesire()) {
             for (Item item : items) {
-                if (potentialVictims.contains(item.getLocation())) return new AttackCommand(ACTOR, item);
+                if (potentialVictims.contains(item.getLocation()))
+                    return new AttackCommand(ACTOR, item);
             }
         }
-        
+
         Set<Direction> occupiedDirections = occupiedDirections(occupiedLocation);
-        Direction bestDirection =  movementVector.bestDirectionNotContaining(occupiedDirections);
+        Direction bestDirection = movementVector.bestDirectionNotContaining(occupiedDirections);
+        if (bestDirection == null){
+            return new WaitCommand();
+        }
         return new MoveCommand(ACTOR, new Location(currentLocation, bestDirection));
     }
 
     Set<Direction> occupiedDirections(Set<Location> locations) {
-        
+
         Set<Direction> victims = new HashSet<>();
-        
-        if (locations.contains(stepNorth())) victims.add(Direction.North);
-        if (locations.contains(stepEast())) victims.add(Direction.East);
-        if (locations.contains(stepSouth())) victims.add(Direction.South);
-        if (locations.contains(stepWest())) victims.add(Direction.West);    
-        
+
+        if (locations.contains(stepNorth()))
+            victims.add(Direction.North);
+        if (locations.contains(stepEast()))
+            victims.add(Direction.East);
+        if (locations.contains(stepSouth()))
+            victims.add(Direction.South);
+        if (locations.contains(stepWest()))
+            victims.add(Direction.West);
+
         return victims;
     }
 
-    Location stepNorth() {
+    private Location stepNorth() {
         return new Location(currentLocation, Direction.North);
     }
 
-    Location stepEast() {
+    private Location stepEast() {
         return new Location(currentLocation, Direction.East);
     }
 
-    Location stepSouth() {
+    private Location stepSouth() {
         return new Location(currentLocation, Direction.South);
     }
 
-    Location stepWest() {
+    private Location stepWest() {
         return new Location(currentLocation, Direction.West);
     }
 
-    Vector generateMovementVector(Location currentLocation) {
+    private Vector generateMovementVector(Location currentLocation) {
 
         // define vector that sums weighted component vectors of object around
         // it.
         Vector vector = new Vector(currentLocation);
 
-        // attracted to god
+        // attracted to food
         for (Location food : edibleLocations) {
             vector.add(food, foodWeight);
         }
 
-        // repeled from bad
+        // repelled from bad
         for (Location bad : preditorLocations) {
             vector.add(bad, repulsionWeight);
         }
 
-        // repeled from occupied location
+        // repelled from occupied location
         for (Location occupied : occupiedLocation) {
             vector.add(occupied, impartialWeight);
         }
@@ -143,8 +153,8 @@ public class ObjectiveFunction {
 
     private class Vector {
 
-        private double x;
-        private double y;
+        private double x = 0.0;
+        private double y = 0.0;
 
         private Location origin;
 
@@ -168,23 +178,61 @@ public class ObjectiveFunction {
         }
 
         Direction bestDirectionNotContaining(Set<Direction> occupiedDirections) {
-        
+
             List<Direction> directions = getPrefferedDirectionsList();
-            
+
             for (Direction direction : directions) {
-                if (!occupiedDirections.contains(direction)) return direction;
+                if (!occupiedDirections.contains(direction))
+                    return direction;
             }
-            
+
             return null;
         }
-        
+
         private List<Direction> getPrefferedDirectionsList() {
             List<Direction> directions = new ArrayList<>();
-            
-            //TODO: return a list containin all the direcitons in descending order of preference 
-            //(ie, starting with the direction closest to the direction vector)
-            
+
+            // returns a list containing three directions in descending
+            // order of preference
+            // (ie, starting with the direction closest to the direction vector)
+
+            if (magnitude(x) > magnitude(y)) {
+                if (x > 0) {
+                    directions.add(Direction.East);
+                } else {
+                    directions.add(Direction.West);
+                }
+                if (y > 0) {
+                    directions.add(Direction.North);
+                    directions.add(Direction.South);
+                } else {
+                    directions.add(Direction.South);
+                    directions.add(Direction.North);
+                }
+    
+            } else {
+                if (y > 0) {
+                    directions.add(Direction.North);
+                } else {
+                    directions.add(Direction.South);
+                }
+                if (x > 0) {
+                    directions.add(Direction.East);
+                    directions.add(Direction.West);
+                } else {
+                    directions.add(Direction.West);
+                    directions.add(Direction.East);
+                }
+            }
+ 
             return directions;
+        }
+
+        private double magnitude(double intToCheck) {
+            if (intToCheck < 0) {
+                return -intToCheck;
+            }
+            return intToCheck;
         }
     }
 }
