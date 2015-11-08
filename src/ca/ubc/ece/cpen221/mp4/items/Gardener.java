@@ -7,6 +7,7 @@ import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
+import ca.ubc.ece.cpen221.mp4.items.minecraft.Tree;
 
 /**
  * The Gardener does not show up in the world, but it plants a {@link Grass} at
@@ -39,6 +40,7 @@ public class Gardener {
 				@Override
 				public void execute(World world) {
 					world.addItem(new Grass(loc));
+					world.addItem(new Tree(loc));
 				}
 			};
 

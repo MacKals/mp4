@@ -35,17 +35,17 @@ public class Main {
 	static final int INITIAL_RABBI = INITIAL_GRASS / 4;
 	static final int INITIAL_FOXES = INITIAL_GRASS / 32;
 	
-	static final int INITIAL_HAWKS = INITIAL_GRASS / 32;
+	static final int INITIAL_HAWKS = INITIAL_GRASS / 64;
 	static final int INITIAL_SLOWL = INITIAL_GRASS / 40;
-	static final int INITIAL_SNAKE = INITIAL_GRASS / 32;
+	static final int INITIAL_SNAKE = INITIAL_GRASS / 40;
 	
-	static final int INITIAL_HOTAI = INITIAL_GRASS / 32;
-	static final int INITIAL_MARAU = INITIAL_GRASS / 32;
-	static final int INITIAL_MOTOR = INITIAL_GRASS / 32;
+	static final int INITIAL_HOTAI = INITIAL_GRASS / 100;
+	static final int INITIAL_MARAU = INITIAL_GRASS / 80;
+	static final int INITIAL_MOTOR = INITIAL_GRASS / 60;
 	
-	static final int INITIAL_STEVE = INITIAL_GRASS / 32;
-	static final int INITIAL_WITHE = INITIAL_GRASS / 32;
-	static final int INITIAL_TREES = INITIAL_GRASS / 32;
+	static final int INITIAL_STEVE = INITIAL_GRASS / 100;
+	static final int INITIAL_WITHE = INITIAL_GRASS / 1000;
+	static final int INITIAL_TREES = INITIAL_GRASS / 4;
 	
 	
 	//not in use
