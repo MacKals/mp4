@@ -77,9 +77,14 @@ public class Main {
 	public void initializeWorld() {
 	    int count = 0;
         
+	    
+	    final Gardener worldGardener = new Gardener();
+	    world.addActor(worldGardener);
+	    
         while (itemsAreBeingAdded) {
             
             itemsAreBeingAdded = false;
+            
             
             if (count < INITIAL_GRASS) add(new Grass(   loc()));
             if (count < INITIAL_GNATS) add(new Gnat(    loc()));

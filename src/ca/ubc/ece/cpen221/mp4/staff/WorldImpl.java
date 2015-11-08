@@ -91,6 +91,7 @@ public class WorldImpl implements World {
 		// Checks whether or not each Actor has completed its cooldown. If it
 		// has, then the Actor's next command is executed. Otherwise, The
 		// Actor's cooldown time decreases by 1.
+	    
 		for (Actor actor : new ArrayList<Actor>(actors)) {
 			Integer waitPeriod = actorWait.get(actor);
 			// If waitPeriod is null, then the actor has been removed by another

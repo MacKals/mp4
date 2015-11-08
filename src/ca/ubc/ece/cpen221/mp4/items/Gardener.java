@@ -5,6 +5,7 @@ import ca.ubc.ece.cpen221.mp4.Item;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
+import ca.ubc.ece.cpen221.mp4.ai.AbstractAI;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.minecraft.Tree;
@@ -14,7 +15,7 @@ import ca.ubc.ece.cpen221.mp4.items.minecraft.Tree;
  * a random location each step if more than half of the world's locations are
  * empty. Don't worry, Grass doesn't just appear...
  */
-public class Gardener {
+public class Gardener extends Actor {
 
 
 	public int getCoolDownPeriod() {
