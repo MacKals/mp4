@@ -23,13 +23,10 @@ public class RabbitAI extends AbstractAI {
 
         for (Item item : visibleItemsSet) {
             
-            if (item instanceof Fox) {
-                objective.bad(item);
-            } else if (item instanceof Grass) {
-                objective.edible(item);
-            } else {
-                objective.impartial(item);
-            }
+            if (item instanceof Fox)            objective.bad(item);
+            else if (item instanceof Grass)     objective.edible(item);
+            else                                objective.impartial(item);
+            
         }
         
         return objective.conclusion();

@@ -18,15 +18,11 @@ public class AbstractAI implements AI {
 	public Direction oppositeDir(Direction dir) { 
 	    // returns opposite direction of direction dir
 		
-	    if (dir == Direction.East) {
-			return Direction.West;
-		} else if (dir == Direction.West) {
-			return Direction.East;
-		} else if (dir == Direction.South) {
-			return Direction.North;
-		} else {
-			return Direction.South;
-		}
+	    if (dir == Direction.East)         	return Direction.West;
+		else if (dir == Direction.West)     return Direction.East;
+		else if (dir == Direction.South)    return Direction.North;
+		else                      			return Direction.South;
+		
 	}
 
 	public boolean isLocationEmpty(ArenaWorld world, ArenaAnimal animal, Location location) { 

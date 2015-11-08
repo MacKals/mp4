@@ -23,17 +23,16 @@ public class FoxAI extends AbstractAI {
 
         for (Item item : visibleItemsSet) {
             
-            if (item instanceof Wither) {
-                objective.bad(item);
-            } else if (item instanceof SlowLoris) {
-                objective.edible(item);
-            } else if (item instanceof Rabbit) {
-                objective.edible(item);
-            } else if (item instanceof Snake) {
-                objective.edible(item);
-            }else {
-                objective.impartial(item);
-            }
+            
+            if (item instanceof Wither)             objective.bad(item);
+            
+            else if (item instanceof SlowLoris)     objective.edible(item);
+            else if (item instanceof Rabbit)        objective.edible(item);
+            else if (item instanceof Snake)         objective.edible(item);
+            else if (item instanceof Gnat)          objective.edible(item);
+            
+            else                                    objective.impartial(item);
+            
         }
         
         return objective.conclusion();
