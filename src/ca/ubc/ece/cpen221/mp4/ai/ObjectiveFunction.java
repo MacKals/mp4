@@ -1,14 +1,18 @@
 package ca.ubc.ece.cpen221.mp4.ai;
 
+import java.io.UncheckedIOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import ca.ubc.ece.cpen221.mp4.Actor;
+import ca.ubc.ece.cpen221.mp4.ArenaWorld;
 import ca.ubc.ece.cpen221.mp4.Direction;
 import ca.ubc.ece.cpen221.mp4.Item;
 import ca.ubc.ece.cpen221.mp4.Location;
+import ca.ubc.ece.cpen221.mp4.Util;
+import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.commands.AttackCommand;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
@@ -23,7 +27,6 @@ public class ObjectiveFunction {
     private int foodWeight;
     private int impartialWeight;
 
-    private int attackWeight;
     private double attackDesire;
 
     private void updateParameters() {
@@ -31,21 +34,23 @@ public class ObjectiveFunction {
         // for making movement disition
         repulsionWeight = -10;
         foodWeight = ((int) (4 / RELATIVE_ENERGY));
-        impartialWeight = -1;
+        impartialWeight = 4;
 
         // for making eating disition
-        attackDesire = RELATIVE_ENERGY * attackWeight;
+        attackDesire = RELATIVE_ENERGY * 100;
 
     }
 
-    public ObjectiveFunction(Actor actor) {
+    public ObjectiveFunction(Actor actor, ArenaWorld world) {
         ACTOR = actor;
+        WORLD = world;
         RELATIVE_ENERGY = (double) actor.getEnergy() / actor.getMaxEnergy();
         currentLocation = actor.getLocation();
         updateParameters();
     }
 
     private Actor ACTOR; // fractional energy left
+    private ArenaWorld WORLD;
     private double RELATIVE_ENERGY; // fractional energy left
     private Location currentLocation; // other fields we want to keep track of
                                       // that will impact the objective function
@@ -70,19 +75,20 @@ public class ObjectiveFunction {
     }
 
     void impartial(Item item) {
-
         occupiedLocation.add(item.getLocation());
     }
 
     public Command conclusion() {
 
         Vector movementVector = generateMovementVector(currentLocation);
-        Set<Direction> potentialVictims = occupiedDirections(edibleLocations);
-
-        if (!potentialVictims.isEmpty() && attackDesire > movementVector.movementDesire()) {
+        Set<Location> attackableLocations = attackableLocations(edibleLocations);
+                
+        
+        if (!attackableLocations.isEmpty() && attackDesire > movementVector.movementDesire()) {
             for (Item item : items) {
-                if (potentialVictims.contains(item.getLocation()))
+                if (attackableLocations.contains(item.getLocation())) {
                     return new AttackCommand(ACTOR, item);
+                }
             }
         }
 
@@ -94,6 +100,19 @@ public class ObjectiveFunction {
         return new MoveCommand(ACTOR, new Location(currentLocation, bestDirection));
     }
 
+    Set<Location> attackableLocations(Set<Location> locations) {
+        
+        Set<Direction> attackingDirections = occupiedDirections(locations);
+        
+        Set<Location> attackingLocations = new HashSet<>();
+        
+        for (Direction attackingDirection : attackingDirections) {
+            attackingLocations.add( new Location(currentLocation, attackingDirection) );
+        }
+        
+        return attackingLocations;
+    }
+    
     Set<Direction> occupiedDirections(Set<Location> locations) {
 
         Set<Direction> victims = new HashSet<>();
@@ -130,8 +149,8 @@ public class ObjectiveFunction {
 
         // define vector that sums weighted component vectors of object around
         // it.
-        Vector vector = new Vector(currentLocation);
-
+        Vector vector = new Vector(currentLocation, WORLD);
+        
         // attracted to food
         for (Location food : edibleLocations) {
             vector.add(food, foodWeight);
@@ -149,90 +168,5 @@ public class ObjectiveFunction {
 
         return vector;
 
-    }
-
-    private class Vector {
-
-        private double x = 0.0;
-        private double y = 0.0;
-
-        private Location origin;
-
-        Vector(Location origin) {
-            this.origin = origin;
-        }
-
-        void add(Location location, int weight) {
-
-            int xCoordinate = location.getX() - origin.getX();
-            int yCoordinate = location.getY() - origin.getY();
-
-            double squaredDistance = xCoordinate ^ 2 + yCoordinate ^ 2;
-            double distanceWeight = weight / Math.sqrt(squaredDistance);
-            x += xCoordinate * distanceWeight;
-            y += yCoordinate * distanceWeight;
-        }
-
-        double movementDesire() {
-            return Math.sqrt(x * x + y * y);
-        }
-
-        Direction bestDirectionNotContaining(Set<Direction> occupiedDirections) {
-
-            List<Direction> directions = getPrefferedDirectionsList();
-
-            for (Direction direction : directions) {
-                if (!occupiedDirections.contains(direction))
-                    return direction;
-            }
-
-            return null;
-        }
-
-        private List<Direction> getPrefferedDirectionsList() {
-            List<Direction> directions = new ArrayList<>();
-
-            // returns a list containing three directions in descending
-            // order of preference
-            // (ie, starting with the direction closest to the direction vector)
-
-            if (magnitude(x) > magnitude(y)) {
-                if (x > 0) {
-                    directions.add(Direction.East);
-                } else {
-                    directions.add(Direction.West);
-                }
-                if (y > 0) {
-                    directions.add(Direction.North);
-                    directions.add(Direction.South);
-                } else {
-                    directions.add(Direction.South);
-                    directions.add(Direction.North);
-                }
-    
-            } else {
-                if (y > 0) {
-                    directions.add(Direction.North);
-                } else {
-                    directions.add(Direction.South);
-                }
-                if (x > 0) {
-                    directions.add(Direction.East);
-                    directions.add(Direction.West);
-                } else {
-                    directions.add(Direction.West);
-                    directions.add(Direction.East);
-                }
-            }
- 
-            return directions;
-        }
-
-        private double magnitude(double intToCheck) {
-            if (intToCheck < 0) {
-                return -intToCheck;
-            }
-            return intToCheck;
-        }
     }
 }
