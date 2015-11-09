@@ -1,7 +1,7 @@
 package ca.ubc.ece.cpen221.mp4.items.animals;
 
 import ca.ubc.ece.cpen221.mp4.Actor;
-import ca.ubc.ece.cpen221.mp4.Item;
+
 
 
 /**
@@ -25,18 +25,6 @@ public abstract class ArenaAnimal extends Actor {
      */
     public int getMinimumBreedingEnergy() {
         return MIN_BREEDING_ENERGY;
-    }
-
-    /**
-     * TODO: implement comment
-     */
-    public void attack(Item enemy) {
-        if ((this.MAX_ENERGY - this.energy) > enemy.getEnergy()){
-            this.energy += enemy.getEnergy(); 
-        }
-        else{
-            this.energy = this.MAX_ENERGY;
-        }
     }
 
     /**

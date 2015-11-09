@@ -76,7 +76,10 @@ public abstract class Actor extends Item {
         this.location = location;
     }
 
-    //TODO: comment
+    /** Attack the enemy. All of the enemy's energy is transferred to the actor, up
+     * to the actor's max energy.  
+     * @param enemy an item representing the enemy being attacked.
+     */
     public void attack(Item enemy) {
         if ((super.MAX_ENERGY - super.energy) > enemy.getEnergy()){
             super.energy += enemy.getEnergy(); 
