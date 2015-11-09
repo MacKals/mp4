@@ -1,5 +1,9 @@
 package ca.ubc.ece.cpen221.mp4.items.minecraft;
 
+/**
+ * A tree from the popular sandbox game, Minecraft, developed by Markus Persson.
+ * @author erikmaclennan, mkals
+ */
 import javax.swing.ImageIcon;
 
 import ca.ubc.ece.cpen221.mp4.Item;

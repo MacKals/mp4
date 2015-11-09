@@ -43,7 +43,7 @@ public class Main {
 	static final int INITIAL_MARAU = INITIAL_GRASS / 80;
 	static final int INITIAL_MOTOR = INITIAL_GRASS / 60;
 	
-	static final int INITIAL_STEVE = INITIAL_GRASS / 100;
+	static final int INITIAL_STEVE = 1; //one on Steve can exist.
 	static final int INITIAL_WITHE = INITIAL_GRASS / 1000;
 	static final int INITIAL_TREES = INITIAL_GRASS / 4;
 	

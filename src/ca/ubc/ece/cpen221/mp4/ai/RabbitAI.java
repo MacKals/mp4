@@ -16,8 +16,9 @@ import ca.ubc.ece.cpen221.mp4.items.minecraft.Steve;
 import ca.ubc.ece.cpen221.mp4.items.minecraft.Wither;
 import ca.ubc.ece.cpen221.mp4.items.vehicles.Marauder;
 
-/**
- * Our Rabbit AI.
+/** 
+ * The AI for rabbits.
+ * @author erikmaclennan, mkals
  */
 public class RabbitAI extends AbstractAI {
     

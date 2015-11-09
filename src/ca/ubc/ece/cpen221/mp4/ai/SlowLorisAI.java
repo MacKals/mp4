@@ -11,6 +11,10 @@ import ca.ubc.ece.cpen221.mp4.items.animals.Gnat;
 import ca.ubc.ece.cpen221.mp4.items.animals.Snake;
 import ca.ubc.ece.cpen221.mp4.items.minecraft.Wither;
 
+/** 
+ * The AI for slow lorises.
+ * @author erikmaclennan, mkals
+ */
 public class SlowLorisAI extends AbstractAI{
     
     @Override

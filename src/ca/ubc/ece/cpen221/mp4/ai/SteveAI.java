@@ -9,6 +9,10 @@ import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.animals.Rabbit;
 import ca.ubc.ece.cpen221.mp4.items.animals.Snake;
 
+/** 
+ * The AI for Steve.
+ * @author erikmaclennan, mkals
+ */
 public class SteveAI extends AbstractAI{
     
     @Override

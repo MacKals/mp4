@@ -9,8 +9,9 @@ import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.animals.*;
 import ca.ubc.ece.cpen221.mp4.items.minecraft.Wither;
 
-/**
- * Our Fox AI.
+/** 
+ * The AI for foxes.
+ * @author erikmaclennan, mkals
  */
 public class FoxAI extends AbstractAI {
     

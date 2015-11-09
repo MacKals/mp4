@@ -1,9 +1,7 @@
 package ca.ubc.ece.cpen221.mp4.ai;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
+
 import java.util.Queue;
 import java.util.Random;
 import java.util.Set;
@@ -19,15 +17,16 @@ import ca.ubc.ece.cpen221.mp4.commands.AttackCommand;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
-import ca.ubc.ece.cpen221.mp4.items.animals.SlowLoris;
-import ca.ubc.ece.cpen221.mp4.items.minecraft.Wither;
 
-
+/** 
+ * The AI for vehicles.
+ * @author erikmaclennan, mkals
+ */
 public class VehicleAI extends AbstractAI {
 
     Queue<Direction> directionToGo = new LinkedList<Direction>();
     private Item enemy;
-    private int NUM_STEPS_IN_DIRECTION = 10;
+    private int NUM_STEPS_IN_DIRECTION = 10; //steps in one direction for this number of steps.
     private int counter = 0;
     
     @Override
@@ -74,6 +73,15 @@ public class VehicleAI extends AbstractAI {
         
     }
 
+    /**
+     * Determines the command to give the Actor object. If there is an item in the way, 
+     * an attack command is issued. Otherwise, a move command in the specified direction is issued.
+     * @param direction the direction desired to travel in.
+     * @param world the environment our actor is in
+     * @param actor the Actor that wants to move.
+     * @param items All of the Items around the actor, determined by view range. Includes the actor itself.
+     * @return the Command desired depending on the situation.
+     */
     private Command makeDecision(Direction direction, World world, Actor actor, Set<Item> items) {
         if (Util.isValidLocation(world, new Location(actor.getLocation(), direction))){
             if (Util.isLocationEmpty((World) world, new Location(actor.getLocation(), direction))) {
@@ -86,7 +94,7 @@ public class VehicleAI extends AbstractAI {
                     break;
                 }
             }
-
+            //location isn't empty, so we attack the item in its position.
             return new AttackCommand(actor, enemy);
         }
         return new WaitCommand();

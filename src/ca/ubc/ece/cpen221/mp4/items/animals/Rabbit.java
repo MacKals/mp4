@@ -3,6 +3,7 @@ package ca.ubc.ece.cpen221.mp4.items.animals;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.ai.AI;
+import ca.ubc.ece.cpen221.mp4.ai.RabbitAI;
 import ca.ubc.ece.cpen221.mp4.items.Grass;
 
 
@@ -50,7 +51,7 @@ public class Rabbit extends ArenaAnimal {
 
 	@Override
 	public ArenaAnimal breed() {
-		Rabbit child = new Rabbit(ai, location);
+		Rabbit child = new Rabbit(new RabbitAI(), location);
 		child.energy = energy / 2;
 		this.energy = energy / 2;
 		return child;

@@ -30,6 +30,12 @@ public final class AttackCommand implements Command {
 		this.enemy = enemy;
 	}
 
+	/**
+	 * Executes the Attack Command. 
+	 * @throws InvalidCommandException when attacker's strength is less than the enemy, 
+	 *         or when the enemy is not adjacent
+	 * @param World the world that 
+	 */
 	@Override
 	public void execute(World w) throws InvalidCommandException {
 		if (actor.getStrength() <= enemy.getStrength())

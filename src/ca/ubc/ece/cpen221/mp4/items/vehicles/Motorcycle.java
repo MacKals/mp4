@@ -6,6 +6,7 @@ import ca.ubc.ece.cpen221.mp4.Actor;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.ai.AI;
+import ca.ubc.ece.cpen221.mp4.items.animals.Rabbit;
 
 public class Motorcycle extends Actor {
 
@@ -26,6 +27,16 @@ public class Motorcycle extends Actor {
     super.MOVING_RANGE = 1;
     }
     
+    /**
+     * Create a new {@link Motorcycle} with an {@link AI} at
+     * <code> initialLocation </code>. The <code> initialLoation
+     * </code> must be valid and empty.
+     *
+     * @param vehicleAI
+     *            : The AI designed for vehicles
+     * @param initialLocation
+     *            : the location where this motorcycle will be created
+     */
     public Motorcycle(AI vehicleAI, Location initialLocation) {
         this.ai = vehicleAI;
         this.location = initialLocation;

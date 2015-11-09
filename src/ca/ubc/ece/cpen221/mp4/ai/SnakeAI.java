@@ -11,6 +11,10 @@ import ca.ubc.ece.cpen221.mp4.items.animals.Gnat;
 import ca.ubc.ece.cpen221.mp4.items.animals.Rabbit;
 import ca.ubc.ece.cpen221.mp4.items.minecraft.Wither;
 
+/** 
+ * The AI for snakes.
+ * @author erikmaclennan, mkals
+ */
 public class SnakeAI extends AbstractAI{
     
     @Override
