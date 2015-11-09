@@ -227,40 +227,40 @@ public class ObjectiveFunction {
     }
 
     /**
-     * 
-     * @return
+     * returns a location one step north of the user
+     * @return location one step north
      */
     private Location stepNorth() {
         return new Location(currentLocation, Direction.North);
     }
 
     /**
-     * 
-     * @return
+     * return a location one step east of the user location
+     * @return location one step east
      */
     private Location stepEast() {
         return new Location(currentLocation, Direction.East);
     }
 
     /**
-     * 
-     * @return
+     * return a location one step south of the user location
+     * @return location one step south
      */
     private Location stepSouth() {
         return new Location(currentLocation, Direction.South);
     }
 
     /**
-     * 
-     * @return
+     * return a location one step west of the user location
+     * @return location one step west
      */
     private Location stepWest() {
         return new Location(currentLocation, Direction.West);
     }
 
     /**
-     * 
-     * @param currentLocation
+     * Generates movement vector from data sorted in lists, using the appropriate weights
+     * @param currentLocation 
      * @return
      */
     private Vector generateMovementVector(Location currentLocation) {
