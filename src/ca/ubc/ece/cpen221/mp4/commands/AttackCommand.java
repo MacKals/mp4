@@ -6,8 +6,8 @@ import ca.ubc.ece.cpen221.mp4.World;
 
 
 /**
- * An EatCommand is a {@link Command} which represents a {@link LivingItem}
- * eating a {@link enemy}.
+ * An AttackCommand is a {@link Command} which represents a {@link LivingItem}
+ * attacking a {@link enemy}.
  */
 public final class AttackCommand implements Command {
 
@@ -17,11 +17,11 @@ public final class AttackCommand implements Command {
 	/**
 	 * Construct a {@link AttackCommand}, where <code> item </code> is the eater
 	 * and <code> enemy </code> is the enemy. Remember that the enemy must be
-	 * adjacent to the eater, and the eater must have greater strength than the
+	 * adjacent to the eater, and the attacker must have greater strength than the
 	 * enemy.
 	 *
 	 * @param item
-	 *            the eater
+	 *            the attacker
 	 * @param enemy
 	 *            : the enemy
 	 */
