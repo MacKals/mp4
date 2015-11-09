@@ -37,8 +37,7 @@ public class Vector {
         
         x += xCoordinate * distanceWeight;
         y -= yCoordinate * distanceWeight;
-        boolean test = true;
-        test = !test;
+
     }
 
     //For search machinery

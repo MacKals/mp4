@@ -19,7 +19,7 @@ import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
 public class ObjectiveFunction {
 
-    // Parameters:
+    // Parameter weights, used to tweak AI behavior:
 
     // negative value makes actor want to escape
     private int repulsionWeight;
@@ -31,8 +31,11 @@ public class ObjectiveFunction {
     private double MINIMUM_DESIRE_FOR_VECTOR_TO_TAKE_EFFECT = 2;
     private double MINIMUM_BREED_ENERGY_PERCENTAGE = 0.9;
     private double SEARCH_CHANGE_THRESHOLD = 5;
-    
-    
+
+    /**
+     * Updates the dynamic weight parameters, enabling the desitions made to be influenced by
+     * the amount of energy the animal has etc.
+     */
     private void updateParameters() {
 
         // for making movement disition
@@ -44,6 +47,13 @@ public class ObjectiveFunction {
         attackDesire = 1000 / RELATIVE_ENERGY;
     }
 
+    /**
+     * Constructs an instance of the ObjectiveFunction AI
+     * @param actor Actor that is making a desition
+     * @param searchInstance Instance of Search, stored in AI class to persist between rounds. 
+     * Enables long term strategy
+     * @param world World in which actor is living
+     */
     public ObjectiveFunction(Actor actor, Search searchInstance, ArenaWorld world) {
         SEARCH = searchInstance;
         ACTOR = actor;
@@ -66,6 +76,10 @@ public class ObjectiveFunction {
 
     private Set<Item> items = new HashSet<>();
 
+    /**
+     * Add edible items that Actor wants to get close too and attack/gain energy from
+     * @param item Edible item 
+     */
     void edible(Item item) {
 
         edibleLocations.add(item.getLocation());
@@ -73,17 +87,31 @@ public class ObjectiveFunction {
         items.add(item);
     }
 
+    /**
+     * Add enemy items that Actor wants to get away from
+     * @param item Enemy item
+     */
     void bad(Item item) {
 
         preditorLocations.add(item.getLocation());
         occupiedLocations.add(item.getLocation());
     }
 
+    /**
+     * Other items in the world that Actor does not really interact with 
+     * @param item Items towards which Actor is impartial
+     */
     void impartial(Item item) {
         occupiedLocations.add(item.getLocation());
     }
 
+    /**
+     * Examines data stored in ObjectiveFunction and determines which action the Actor should perform
+     * @return the action the actor should perform
+     */
     public Command conclusion() {
+
+        // Determining weather to breed
 
         Set<Direction> occupiedDirections = occupiedDirections(occupiedLocations);
 
@@ -96,6 +124,9 @@ public class ObjectiveFunction {
             }
         }
 
+        // Determining weather to attack/eat and generating movement vector
+        // whose magnitude determines
+
         Vector movementVector = generateMovementVector(currentLocation);
         Set<Location> attackableLocations = attackableLocations(edibleLocations);
 
@@ -107,14 +138,17 @@ public class ObjectiveFunction {
             }
         }
 
+        // Determining weather to move, and in which direction to do so.
+
         Direction bestDirection;
 
         if (movementVector.movementDesire() < MINIMUM_DESIRE_FOR_VECTOR_TO_TAKE_EFFECT) {
-
+            // If movementVector has too small a magnitude, adopt search
+            // behaviour
             Vector searchVector = new Vector(currentLocation, WORLD);
 
             Search.Goal searchGoal = SEARCH.getSearchGoal();
-                        
+
             switch (searchGoal) {
             case NE:
                 searchVector.add(WORLD.getWidth(), 0);
@@ -132,7 +166,7 @@ public class ObjectiveFunction {
                 searchVector.add(WORLD.getWidth() / 2, WORLD.getHeight() / 2);
                 break;
             }
-            
+
             if (searchVector.movementDesire() < SEARCH_CHANGE_THRESHOLD) {
                 SEARCH.setNewSearchGoal();
             }
@@ -145,6 +179,8 @@ public class ObjectiveFunction {
 
         }
 
+        // stand still if none of the three most desirable moving directions are
+        // free
         if (bestDirection == null) {
             return new WaitCommand();
         }
@@ -152,6 +188,12 @@ public class ObjectiveFunction {
         return new MoveCommand(ACTOR, new Location(currentLocation, bestDirection));
     }
 
+    /**
+     * Returns the locations that are attackable for an actor (the locations
+     * that are one step directly north, east, south or west).
+     * @param locations potential locations to be attacked
+     * @return the subset of locations passed inn that can be attacked
+     */
     private Set<Location> attackableLocations(Set<Location> locations) {
 
         Set<Location> attackingLocations = new HashSet<>();
@@ -163,6 +205,11 @@ public class ObjectiveFunction {
         return attackingLocations;
     }
 
+    /**
+     * Determines the directions 
+     * @param locations
+     * @return
+     */
     private Set<Direction> occupiedDirections(Set<Location> locations) {
 
         Set<Direction> victims = new HashSet<>();
@@ -179,22 +226,43 @@ public class ObjectiveFunction {
         return victims;
     }
 
+    /**
+     * 
+     * @return
+     */
     private Location stepNorth() {
         return new Location(currentLocation, Direction.North);
     }
 
+    /**
+     * 
+     * @return
+     */
     private Location stepEast() {
         return new Location(currentLocation, Direction.East);
     }
 
+    /**
+     * 
+     * @return
+     */
     private Location stepSouth() {
         return new Location(currentLocation, Direction.South);
     }
 
+    /**
+     * 
+     * @return
+     */
     private Location stepWest() {
         return new Location(currentLocation, Direction.West);
     }
 
+    /**
+     * 
+     * @param currentLocation
+     * @return
+     */
     private Vector generateMovementVector(Location currentLocation) {
 
         // define vector that sums weighted component vectors of object around

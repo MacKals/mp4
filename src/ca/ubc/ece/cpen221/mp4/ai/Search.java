@@ -2,8 +2,6 @@ package ca.ubc.ece.cpen221.mp4.ai;
 
 import java.util.Random;
 
-import ca.ubc.ece.cpen221.mp4.Direction;
-
 public class Search {
 
     public enum Goal {
