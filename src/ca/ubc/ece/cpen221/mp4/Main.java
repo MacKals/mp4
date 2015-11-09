@@ -32,8 +32,8 @@ public class Main {
 	static final int INITIAL_GRASS = X_DIM * Y_DIM / SPACES_PER_GRASS;
 	static final int INITIAL_GNATS = INITIAL_GRASS /100;// 4;
 	
-	static final int INITIAL_RABBI = INITIAL_GRASS / 4;
-	static final int INITIAL_FOXES = INITIAL_GRASS / 32;
+	static final int INITIAL_RABBI = INITIAL_GRASS / 100;
+	static final int INITIAL_FOXES = INITIAL_GRASS / 100;
 	
 	static final int INITIAL_HAWKS = INITIAL_GRASS / 64;
 	static final int INITIAL_SLOWL = INITIAL_GRASS / 40;
@@ -90,18 +90,18 @@ public class Main {
             if (count < INITIAL_FOXES) add(new Fox(                 new FoxAI(),        loc()));
             if (count < INITIAL_RABBI) add(new Rabbit(              new RabbitAI(),     loc()));
             
-            if (count < INITIAL_HAWKS) add(new Hawk(                new HawkAI(),       loc()));
-            if (count < INITIAL_SLOWL) add(new SlowLoris(           new SlowLorisAI(),  loc()));
-            if (count < INITIAL_SNAKE) add(new Snake(               new SnakeAI(),      loc()));
-            
-            if (count < INITIAL_HOTAI) add(new HotAirBalloon(       new VehicleAI(),    loc()));
-            if (count < INITIAL_MARAU) add(new Marauder(            new VehicleAI(),    loc()));
-            if (count < INITIAL_MOTOR) add(new Motorcycle(          new VehicleAI(),    loc()));
-            
-            if (count < INITIAL_STEVE) add(new Steve(               new SteveAI(),      loc()));
-            if (count < INITIAL_WITHE) add(new Wither(              new WitherAI(),     loc()));
-            if (count < INITIAL_TREES) add(new Tree(                                    loc()));
-            
+//            if (count < INITIAL_HAWKS) add(new Hawk(                new HawkAI(),       loc()));
+//            if (count < INITIAL_SLOWL) add(new SlowLoris(           new SlowLorisAI(),  loc()));
+//            if (count < INITIAL_SNAKE) add(new Snake(               new SnakeAI(),      loc()));
+//            
+//            if (count < INITIAL_HOTAI) add(new HotAirBalloon(       new VehicleAI(),    loc()));
+//            if (count < INITIAL_MARAU) add(new Marauder(            new VehicleAI(),    loc()));
+//            if (count < INITIAL_MOTOR) add(new Motorcycle(          new VehicleAI(),    loc()));
+//            
+//            if (count < INITIAL_STEVE) add(new Steve(               new SteveAI(),      loc()));
+//            if (count < INITIAL_WITHE) add(new Wither(              new WitherAI(),     loc()));
+//            if (count < INITIAL_TREES) add(new Tree(                                    loc()));
+//            
 
             count++;
         }

@@ -18,6 +18,7 @@ import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 
+
 /** 
  * The AI for vehicles.
  * @author erikmaclennan, mkals

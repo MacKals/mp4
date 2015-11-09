@@ -37,14 +37,13 @@ public class Vector {
         
         x += xCoordinate * distanceWeight;
         y -= yCoordinate * distanceWeight;
-        boolean test = true;
-        test = !test;
+
     }
 
     //For search machinery
     void add(int XValue, int YValue) {
-        x = XValue;
-        y = YValue;
+        x = XValue - origin.getX();
+        y = -(YValue - origin.getY());
     }
     
     double movementDesire() {

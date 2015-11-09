@@ -14,40 +14,7 @@ import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.animals.*;
 
-public abstract class AbstractAI implements AI {
-
-    AbstractAI() {
-        setNewSearchGoal();
-    }
-    
-    protected Goal searchingGoal;
-
-    public void setNewSearchGoal() {
-
-        Random generator = new Random();
-
-        switch (generator.nextInt(5)) {
-        case 0:
-            searchingGoal = Goal.NE;
-            break;
-        case 1:
-            searchingGoal = Goal.SE;
-            break;
-        case 2:
-            searchingGoal = Goal.SW;
-            break;
-        case 3:
-            searchingGoal = Goal.NW;
-            break;
-        case 4:
-            searchingGoal = Goal.Centre;
-            break;
-        }
-    }
-
-    public Goal getSearchGoal() {
-        return searchingGoal;
-    }
+public class AbstractAI implements AI {
 
     public Direction oppositeDir(Direction dir) {
         // returns opposite direction of direction dir
@@ -62,7 +29,7 @@ public abstract class AbstractAI implements AI {
             return Direction.South;
 
     }
-
+    
     public boolean isLocationEmpty(ArenaWorld world, ArenaAnimal animal, Location location) {
         // returns true if location is empty
 

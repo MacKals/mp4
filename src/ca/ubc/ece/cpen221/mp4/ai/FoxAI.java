@@ -15,10 +15,12 @@ import ca.ubc.ece.cpen221.mp4.items.minecraft.Wither;
  */
 public class FoxAI extends AbstractAI {
     
+    private Search search = new Search();
+
     @Override
     public Command getNextAction(ArenaWorld world, Actor actor) {
         
-        ObjectiveFunction objective = new ObjectiveFunction(actor, this, world); 
+        ObjectiveFunction objective = new ObjectiveFunction(actor, search, world); 
         
         Set<Item> visibleItemsSet = world.searchSurroundings(actor);
 
