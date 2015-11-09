@@ -6,7 +6,13 @@ import ca.ubc.ece.cpen221.mp4.Actor;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.ai.AI;
+import ca.ubc.ece.cpen221.mp4.items.animals.Hawk;
 
+/**
+ * The Marauder is a massive vehicle developed in South Africa.
+ * @author erikmaclennan
+ * @author mkals
+ */
 public class Marauder extends Actor {
 
     { 
@@ -25,6 +31,16 @@ public class Marauder extends Actor {
     super.MOVING_RANGE = 1;
     }
     
+    /**
+     * Create a new {@link Marauder} with an {@link AI} at
+     * <code> initialLocation </code>. The <code> initialLoation
+     * </code> must be valid and empty.
+     *
+     * @param vehicleAI
+     *            : The AI designed for vehicles
+     * @param initialLocation
+     *            : the location where this Marauder will be created
+     */
     public Marauder(AI vehicleAI, Location initialLocation) {
         this.ai = vehicleAI;
         this.location = initialLocation;

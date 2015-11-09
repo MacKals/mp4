@@ -9,13 +9,19 @@ import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.animals.Rabbit;
 import ca.ubc.ece.cpen221.mp4.items.animals.Snake;
 
+/** 
+ * The AI for the Wither.
+ * @author erikmaclennan, mkals
+ */
 public class WitherAI extends AbstractAI {
 
+    Search search = new Search();
+    
     @Override
     public Command getNextAction(ArenaWorld world, Actor actor) {
 
         
-        ObjectiveFunction objective = new ObjectiveFunction(actor,this, world); 
+        ObjectiveFunction objective = new ObjectiveFunction(actor,search, world); 
         
         Set<Item> visibleItemsSet = world.searchSurroundings(actor);
 

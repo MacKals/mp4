@@ -9,7 +9,10 @@ import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.ai.AI;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
-
+/**
+ * One of the bosses from Minecraft, developed by Markus Persson.
+ * @author erikmaclennan, mkals
+ */
 public class Wither extends Actor {
 
     { 

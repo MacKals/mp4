@@ -7,9 +7,14 @@ import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.ai.AI;
+import ca.ubc.ece.cpen221.mp4.ai.SnakeAI;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 
-
+/**
+ * The snake is an elongated, legless reptile. It is carnivorous,
+ *  and can eat animals similar in size to itself.
+ * @author erikmaclennan, mkals
+ */
 public class Snake extends ArenaAnimal {
 
     { 
@@ -34,14 +39,14 @@ public class Snake extends ArenaAnimal {
     
 
     /**
-     * Create a new {@link Rabbit} with an {@link AI} at
+     * Create a new {@link Snake} with an {@link AI} at
      * <code> initialLocation </code>. The <code> initialLoation
      * </code> must be valid and empty.
      *
-     * @param rabbitAI
-     *            : The AI designed for rabbits
+     * @param SnakeAI
+     *            : The AI designed for snakes
      * @param initialLocation
-     *            : the location where this rabbit will be created
+     *            : the location where this snake will be created
      */
     public Snake(AI SnakeAI, Location initialLocation) {
         ai = SnakeAI;
@@ -51,7 +56,7 @@ public class Snake extends ArenaAnimal {
 
     @Override
     public ArenaAnimal breed() {
-        Snake child = new Snake(ai, location);
+        Snake child = new Snake(new SnakeAI(), location);
         child.energy = energy / 2;
         this.energy = energy / 2;
         return child;

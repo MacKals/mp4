@@ -16,8 +16,9 @@ import ca.ubc.ece.cpen221.mp4.items.vehicles.HotAirBalloon;
 import ca.ubc.ece.cpen221.mp4.items.vehicles.Marauder;
 import ca.ubc.ece.cpen221.mp4.items.vehicles.Motorcycle;
 
-/**
- * Our Rabbit AI.
+/** 
+ * The AI for rabbits.
+ * @author erikmaclennan, mkals
  */
 public class RabbitAI extends AbstractAI {
       

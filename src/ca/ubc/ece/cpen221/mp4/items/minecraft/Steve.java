@@ -6,8 +6,13 @@ import ca.ubc.ece.cpen221.mp4.Actor;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.ai.AI;
-import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
+/**
+ * Steve is the moniker given to hero in the popular sandbox game, Minecraft. The game was 
+ * developed by Markus Persson in Java.
+ * @author erikmaclennan, mkals
+ *
+ */
 public class Steve extends Actor {
 
     { 

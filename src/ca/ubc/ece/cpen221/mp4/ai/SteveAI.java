@@ -13,12 +13,18 @@ import ca.ubc.ece.cpen221.mp4.items.vehicles.HotAirBalloon;
 import ca.ubc.ece.cpen221.mp4.items.vehicles.Marauder;
 import ca.ubc.ece.cpen221.mp4.items.vehicles.Motorcycle;
 
+/** 
+ * The AI for Steve.
+ * @author erikmaclennan, mkals
+ */
 public class SteveAI extends AbstractAI{
+    
+    Search search = new Search();
     
     @Override
     public Command getNextAction(ArenaWorld world, Actor actor) {
         
-        ObjectiveFunction objective = new ObjectiveFunction(actor, this, world); 
+        ObjectiveFunction objective = new ObjectiveFunction(actor, search, world); 
         
         Set<Item> visibleItemsSet = world.searchSurroundings(actor);
 

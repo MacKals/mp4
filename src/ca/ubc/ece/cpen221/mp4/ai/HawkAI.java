@@ -11,12 +11,18 @@ import ca.ubc.ece.cpen221.mp4.items.animals.SlowLoris;
 import ca.ubc.ece.cpen221.mp4.items.animals.Snake;
 import ca.ubc.ece.cpen221.mp4.items.vehicles.HotAirBalloon;
 
+/**
+ * The AI for hawks. 
+ * @author erikmaclennan, mkals
+ */
 public class HawkAI extends AbstractAI{
+    
+    Search search = new Search();
     
     @Override
     public Command getNextAction(ArenaWorld world, Actor actor) {
         
-        ObjectiveFunction objective = new ObjectiveFunction(actor, this, world); 
+        ObjectiveFunction objective = new ObjectiveFunction(actor, search, world); 
         
         Set<Item> visibleItemsSet = world.searchSurroundings(actor);
 
