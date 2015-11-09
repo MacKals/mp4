@@ -1,9 +1,6 @@
 package ca.ubc.ece.cpen221.mp4.ai;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.Random;
 import java.util.Set;
@@ -19,8 +16,6 @@ import ca.ubc.ece.cpen221.mp4.commands.AttackCommand;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
-import ca.ubc.ece.cpen221.mp4.items.animals.SlowLoris;
-import ca.ubc.ece.cpen221.mp4.items.minecraft.Wither;
 
 
 public class VehicleAI extends AbstractAI {

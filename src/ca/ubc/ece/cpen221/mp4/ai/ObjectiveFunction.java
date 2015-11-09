@@ -28,8 +28,11 @@ public class ObjectiveFunction {
 
     private double attackDesire;
 
-    private double MINIMUM_DESIRE_FOR_VECTOR_TO_TAKE_EFFECT = 1;
-
+    private double MINIMUM_DESIRE_FOR_VECTOR_TO_TAKE_EFFECT = 2;
+    private double MINIMUM_BREED_ENERGY_PERCENTAGE = 0.9;
+    private double SEARCH_CHANGE_THRESHOLD = 5;
+    
+    
     private void updateParameters() {
 
         // for making movement disition
@@ -41,8 +44,8 @@ public class ObjectiveFunction {
         attackDesire = 1000 / RELATIVE_ENERGY;
     }
 
-    public ObjectiveFunction(Actor actor, AbstractAI actorAI, ArenaWorld world) {
-        ACTOR_AI = actorAI;
+    public ObjectiveFunction(Actor actor, Search searchInstance, ArenaWorld world) {
+        SEARCH = searchInstance;
         ACTOR = actor;
         WORLD = world;
         RELATIVE_ENERGY = (double) actor.getEnergy() / actor.getMaxEnergy();
@@ -51,7 +54,7 @@ public class ObjectiveFunction {
     }
 
     private Actor ACTOR; // fractional energy left
-    private AbstractAI ACTOR_AI;
+    private Search SEARCH;
     private ArenaWorld WORLD;
     private double RELATIVE_ENERGY; // fractional energy left
     private Location currentLocation; // other fields we want to keep track of
@@ -85,7 +88,7 @@ public class ObjectiveFunction {
         Set<Direction> occupiedDirections = occupiedDirections(occupiedLocations);
 
         if (ACTOR instanceof ArenaAnimal) {
-            if (RELATIVE_ENERGY > 0.7 && occupiedDirections.size() < 4) {
+            if (RELATIVE_ENERGY > MINIMUM_BREED_ENERGY_PERCENTAGE && occupiedDirections.size() < 4) {
 
                 Location newLocation = Util.getRandomEmptyAdjacentLocation((World) WORLD, currentLocation);
 
@@ -110,8 +113,8 @@ public class ObjectiveFunction {
 
             Vector searchVector = new Vector(currentLocation, WORLD);
 
-            Goal searchGoal = ACTOR_AI.getSearchGoal();
-
+            Search.Goal searchGoal = SEARCH.getSearchGoal();
+                        
             switch (searchGoal) {
             case NE:
                 searchVector.add(WORLD.getWidth(), 0);
@@ -127,6 +130,11 @@ public class ObjectiveFunction {
                 break;
             case Centre:
                 searchVector.add(WORLD.getWidth() / 2, WORLD.getHeight() / 2);
+                break;
+            }
+            
+            if (searchVector.movementDesire() < SEARCH_CHANGE_THRESHOLD) {
+                SEARCH.setNewSearchGoal();
             }
 
             bestDirection = searchVector.bestDirectionNotContaining(occupiedDirections);

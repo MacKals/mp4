@@ -7,9 +7,14 @@ import ca.ubc.ece.cpen221.mp4.ArenaWorld;
 import ca.ubc.ece.cpen221.mp4.Item;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.animals.Fox;
-import ca.ubc.ece.cpen221.mp4.items.animals.Gnat;
+import ca.ubc.ece.cpen221.mp4.items.animals.Hawk;
 import ca.ubc.ece.cpen221.mp4.items.animals.Rabbit;
+import ca.ubc.ece.cpen221.mp4.items.animals.SlowLoris;
+import ca.ubc.ece.cpen221.mp4.items.minecraft.Steve;
 import ca.ubc.ece.cpen221.mp4.items.minecraft.Wither;
+import ca.ubc.ece.cpen221.mp4.items.vehicles.HotAirBalloon;
+import ca.ubc.ece.cpen221.mp4.items.vehicles.Marauder;
+import ca.ubc.ece.cpen221.mp4.items.vehicles.Motorcycle;
 
 public class SnakeAI extends AbstractAI{
     
@@ -22,11 +27,19 @@ public class SnakeAI extends AbstractAI{
 
         for (Item item : visibleItemsSet) {
             
-            if (item instanceof Wither)         objective.bad(item);
-            else if (item instanceof Fox)       objective.bad(item);
-            else if (item instanceof Gnat)      objective.edible(item);
-            else if (item instanceof Rabbit)    objective.edible(item);
-            else                                objective.impartial(item);
+            if (item instanceof Wither)             objective.bad(item);
+            else if (item instanceof Fox)           objective.bad(item);
+            else if (item instanceof Hawk)          objective.bad(item);
+            else if (item instanceof Marauder)      objective.bad(item);
+            else if (item instanceof Motorcycle)    objective.bad(item);
+            else if (item instanceof HotAirBalloon) objective.bad(item);
+
+            else if (item instanceof Rabbit)        objective.edible(item);
+            else if (item instanceof SlowLoris)     objective.edible(item);
+            else if (item instanceof Steve)         objective.edible(item);
+
+            
+            else                                    objective.impartial(item);
             
         }
         
