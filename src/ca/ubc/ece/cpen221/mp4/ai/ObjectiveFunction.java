@@ -19,6 +19,15 @@ import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
 public class ObjectiveFunction {
 
+    /**
+     * AI classes initialize an instance of the ObjectiveFunction, 
+     * a disition engine that is capable of taking all visible objects into consideration.
+     * 
+     * The AI class starts to add visible items to the ObjectiveFunction instance in the appropriate
+     * categories. A decition will then be made as to what action to perform based on this information
+     * and on a set of weights that may be used to tweak the actors behavior. 
+     */
+    
     // Parameter weights, used to tweak AI behavior:
 
     // negative value makes actor want to escape

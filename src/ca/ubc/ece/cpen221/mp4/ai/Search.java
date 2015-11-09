@@ -4,16 +4,28 @@ import java.util.Random;
 
 public class Search {
 
+    /**
+     * four different search goals for the Objective Function to move towards when no 
+     * good moves are available
+     * @author mKals
+     *
+     */
     public enum Goal {
         NE, SE, SW, NW, Centre;
     }
     
+    /**
+     * Initializes instance with a randomized search goal
+     */
     Search() {
         setNewSearchGoal();
     }
     
     private Goal searchingGoal;
 
+    /**
+     * generates a random search goal for Actor to go towards
+     */
     public void setNewSearchGoal() {
 
         Random generator = new Random();
@@ -37,6 +49,10 @@ public class Search {
         }
     }
 
+    /**
+     * 
+     * @return currently active search goal
+     */
     public Goal getSearchGoal() {
         return searchingGoal;
     }
