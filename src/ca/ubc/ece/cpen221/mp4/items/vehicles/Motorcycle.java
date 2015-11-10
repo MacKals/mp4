@@ -1,12 +1,10 @@
 package ca.ubc.ece.cpen221.mp4.items.vehicles;
 
-import javax.swing.ImageIcon;
 
 import ca.ubc.ece.cpen221.mp4.Actor;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.ai.AI;
-import ca.ubc.ece.cpen221.mp4.items.animals.Rabbit;
 
 public class Motorcycle extends Actor {
 
@@ -18,7 +16,7 @@ public class Motorcycle extends Actor {
     super.IS_MEAT = false;
     super.IS_VEGGIE = false;
     super.MAX_ENERGY = 120;
-    super.STRENGTH = 100;
+    super.STRENGTH = 400;
     
     //All Actor properties
     super.INITIAL_ENERGY = 100;

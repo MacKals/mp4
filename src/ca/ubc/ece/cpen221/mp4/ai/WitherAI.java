@@ -6,8 +6,10 @@ import ca.ubc.ece.cpen221.mp4.Actor;
 import ca.ubc.ece.cpen221.mp4.ArenaWorld;
 import ca.ubc.ece.cpen221.mp4.Item;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
-import ca.ubc.ece.cpen221.mp4.items.animals.Rabbit;
-import ca.ubc.ece.cpen221.mp4.items.animals.Snake;
+import ca.ubc.ece.cpen221.mp4.items.Grass;
+import ca.ubc.ece.cpen221.mp4.items.animals.Gnat;
+import ca.ubc.ece.cpen221.mp4.items.animals.SlowLoris;
+import ca.ubc.ece.cpen221.mp4.items.vehicles.Marauder;
 
 /** 
  * The AI for the Wither.
@@ -27,9 +29,11 @@ public class WitherAI extends AbstractAI {
 
         for (Item item : visibleItemsSet) {
             
-            if (item instanceof Snake)          objective.edible(item);
-            else if (item instanceof Rabbit)    objective.edible(item);
-            else                                objective.impartial(item);
+            if (item instanceof Grass)          objective.impartial(item);
+            if (item instanceof Gnat)           objective.impartial(item);
+            else if (item instanceof SlowLoris) objective.bad(item);        //Withers fears Slow Lorises with a passion
+            else if (item instanceof Marauder)  objective.bad(item);        //Withers fears Slow Lorises with a passion
+            else                                objective.edible(item);
             
         }
         

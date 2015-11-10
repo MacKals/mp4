@@ -13,10 +13,11 @@ import ca.ubc.ece.cpen221.mp4.Item;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
-import ca.ubc.ece.cpen221.mp4.commands.AttackCommand;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
+import ca.ubc.ece.cpen221.mp4.commands.EatCommand;
 import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
+
 
 
 /** 
@@ -96,9 +97,14 @@ public class VehicleAI extends AbstractAI {
                 }
             }
             //location isn't empty, so we attack the item in its position.
-            return new AttackCommand(actor, enemy);
+            
+            if (enemy.getStrength() < actor.getStrength()) {
+                return new EatCommand(actor, enemy);
+            }
+            
+            
         }
-        return new WaitCommand();
         
+        return new WaitCommand();
     }
 }

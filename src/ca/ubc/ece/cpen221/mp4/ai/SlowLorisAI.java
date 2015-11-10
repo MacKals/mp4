@@ -10,6 +10,7 @@ import ca.ubc.ece.cpen221.mp4.items.Grass;
 import ca.ubc.ece.cpen221.mp4.items.animals.Fox;
 import ca.ubc.ece.cpen221.mp4.items.animals.Hawk;
 import ca.ubc.ece.cpen221.mp4.items.animals.Snake;
+import ca.ubc.ece.cpen221.mp4.items.minecraft.Tree;
 import ca.ubc.ece.cpen221.mp4.items.minecraft.Wither;
 import ca.ubc.ece.cpen221.mp4.items.vehicles.HotAirBalloon;
 import ca.ubc.ece.cpen221.mp4.items.vehicles.Marauder;
@@ -36,10 +37,11 @@ public class SlowLorisAI extends AbstractAI{
             else if (item instanceof Hawk)          objective.bad(item);
             else if (item instanceof Marauder)      objective.bad(item);
             else if (item instanceof HotAirBalloon) objective.bad(item);
-
-            else if (item instanceof Snake)         objective.edible(item);
-            else if (item instanceof Grass)         objective.edible(item);
+            else if (item instanceof Snake)         objective.bad(item);
             
+            else if (item instanceof Grass)         objective.edible(item);
+            else if (item instanceof Tree)          objective.edible(item);
+
             else                                    objective.impartial(item);
             
         }

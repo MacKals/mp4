@@ -1,14 +1,12 @@
 package ca.ubc.ece.cpen221.mp4.items.minecraft;
 
-import javax.swing.ImageIcon;
-
 import ca.ubc.ece.cpen221.mp4.Actor;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.ai.AI;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
-import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
+
 /**
  * One of the bosses from Minecraft, developed by Markus Persson.
  * @author erikmaclennan, mkals
@@ -22,7 +20,7 @@ public class Wither extends Actor {
     super.IS_MEAT = false;
     super.IS_VEGGIE = false;
     super.MAX_ENERGY = 10000;
-    super.STRENGTH = 500;
+    super.STRENGTH = 450;
     
     //All Actor properties
     super.INITIAL_ENERGY = 8000;
@@ -40,7 +38,8 @@ public class Wither extends Actor {
     @Override
     public Command getNextAction(World world) {
         Command nextAction = this.ai.getNextAction(world, this);
-        this.energy = this.energy - 500; // Loses 1000 energy regardless of action.
+        //cannot die
+     //   this.energy = this.energy - 10; // Loses 1000 energy regardless of action.
         return nextAction;
     }
 }

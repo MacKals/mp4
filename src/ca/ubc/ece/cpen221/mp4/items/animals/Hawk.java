@@ -17,11 +17,11 @@ public class Hawk extends ArenaAnimal {
     super.IMAGE = Util.loadImage("hawk.gif");
     super.IS_MEAT = true;
     super.IS_VEGGIE = false;
-    super.MAX_ENERGY = 60;
-    super.STRENGTH = 60;
+    super.MAX_ENERGY = 90;
+    super.STRENGTH = 350;
     
     //All Actor properties
-    super.INITIAL_ENERGY = 40;
+    super.INITIAL_ENERGY = 100;
     super.VIEW_RANGE = 5;
     super.COOLDOWN_PERIOD = 1;
     super.MOVING_RANGE = 3;

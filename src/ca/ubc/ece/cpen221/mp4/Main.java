@@ -32,10 +32,10 @@ public class Main {
 	static final int INITIAL_GRASS = X_DIM * Y_DIM / SPACES_PER_GRASS;
 	static final int INITIAL_GNATS = INITIAL_GRASS /100;// 4;
 	
-	static final int INITIAL_RABBI = INITIAL_GRASS / 100;
-	static final int INITIAL_FOXES = INITIAL_GRASS / 100;
+	static final int INITIAL_RABBI = INITIAL_GRASS / 20;
+	static final int INITIAL_FOXES = INITIAL_GRASS / 20;
 	
-	static final int INITIAL_HAWKS = INITIAL_GRASS / 64;
+	static final int INITIAL_HAWKS = INITIAL_GRASS / 100;
 	static final int INITIAL_SLOWL = INITIAL_GRASS / 40;
 	static final int INITIAL_SNAKE = INITIAL_GRASS / 40;
 	
@@ -43,19 +43,10 @@ public class Main {
 	static final int INITIAL_MARAU = INITIAL_GRASS / 80;
 	static final int INITIAL_MOTOR = INITIAL_GRASS / 60;
 	
-	static final int INITIAL_STEVE = 1; //one on Steve can exist.
-	static final int INITIAL_WITHE = INITIAL_GRASS / 1000;
+	static final int INITIAL_STEVE = 1; //only one Steve can exist.
+	static final int INITIAL_WITHE = 1;
 	static final int INITIAL_TREES = INITIAL_GRASS / 4;
 	
-	
-	//not in use
-//	static final int INITIAL_CARS = INITIAL_GRASS / 100;
-//	static final int INITIAL_TRUCKS = INITIAL_GRASS / 150;
-//	static final int INITIAL_MOTORCYCLES = INITIAL_GRASS / 64;
-//	static final int INITIAL_MANS = INITIAL_GRASS / 150;
-//	static final int INITIAL_WOMANS = INITIAL_GRASS / 100;
-//	static final int INITIAL_HUNTERS = INITIAL_GRASS / 150;
-
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override

@@ -22,7 +22,7 @@ public class Marauder extends Actor {
     super.IS_MEAT = false;
     super.IS_VEGGIE = false;
     super.MAX_ENERGY = 1000;
-    super.STRENGTH = 5000;
+    super.STRENGTH = 500;
     
     //All Actor properties
     super.INITIAL_ENERGY = 1000;

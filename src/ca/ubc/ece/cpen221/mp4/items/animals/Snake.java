@@ -1,14 +1,9 @@
 package ca.ubc.ece.cpen221.mp4.items.animals;
 
-import javax.swing.ImageIcon;
-
-
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
-import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.ai.AI;
 import ca.ubc.ece.cpen221.mp4.ai.SnakeAI;
-import ca.ubc.ece.cpen221.mp4.commands.Command;
 
 /**
  * The snake is an elongated, legless reptile. It is carnivorous,
@@ -24,7 +19,7 @@ public class Snake extends ArenaAnimal {
     super.IS_MEAT = true;
     super.IS_VEGGIE = false;
     super.MAX_ENERGY = 120;
-    super.STRENGTH = 60;
+    super.STRENGTH = 90;
     
     //All Actor properties
     super.INITIAL_ENERGY = 100;

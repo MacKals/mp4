@@ -9,7 +9,9 @@ import ca.ubc.ece.cpen221.mp4.World;
  * An AttackCommand is a {@link Command} which represents a {@link LivingItem}
  * attacking a {@link enemy}.
  */
-public final class AttackCommand implements Command {
+
+
+public final class EatCommand implements Command {
 
 	private final Actor actor;
 	private final Item enemy;
@@ -25,11 +27,11 @@ public final class AttackCommand implements Command {
 	 * @param enemy
 	 *            : the enemy
 	 */
-	public AttackCommand(Actor actor, Item enemy) {
+	public EatCommand(Actor actor, Item enemy) {
 		this.actor = actor;
 		this.enemy = enemy;
 	}
-
+	
 	/**
 	 * Executes the Attack Command. 
 	 * @throws InvalidCommandException when attacker's strength is less than the enemy, 

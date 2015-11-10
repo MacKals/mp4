@@ -21,7 +21,7 @@ public class HotAirBalloon extends Actor {
     super.IS_MEAT = false;
     super.IS_VEGGIE = false;
     super.MAX_ENERGY = 120;
-    super.STRENGTH = 100;
+    super.STRENGTH = 200;
     
     //All Actor properties
     super.INITIAL_ENERGY = 100;

@@ -2,14 +2,15 @@ package ca.ubc.ece.cpen221.mp4.ai;
 
 import java.util.Random;
 
+/**
+ * four different search goals for the Objective Function to move towards when no 
+ * good moves are available
+ * @author erikmaclennan, mKals
+ *
+ */
+
 public class Search {
 
-    /**
-     * four different search goals for the Objective Function to move towards when no 
-     * good moves are available
-     * @author mKals
-     *
-     */
     public enum Goal {
         NE, SE, SW, NW, Centre;
     }

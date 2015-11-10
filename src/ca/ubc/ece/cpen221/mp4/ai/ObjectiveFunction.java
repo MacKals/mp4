@@ -10,23 +10,24 @@ import ca.ubc.ece.cpen221.mp4.Item;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
-import ca.ubc.ece.cpen221.mp4.commands.AttackCommand;
+import ca.ubc.ece.cpen221.mp4.commands.EatCommand;
 import ca.ubc.ece.cpen221.mp4.commands.BreedCommand;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
-public class ObjectiveFunction {
+/**
+ * AI classes initialize an instance of the ObjectiveFunction, 
+ * a disition engine that is capable of taking all visible objects into consideration.
+ * 
+ * The AI class starts to add visible items to the ObjectiveFunction instance in the appropriate
+ * categories. A decition will then be made as to what action to perform based on this information
+ * and on a set of weights that may be used to tweak the actors behavior. 
+ * @author erikmaclennan, mKals
+ */
 
-    /**
-     * AI classes initialize an instance of the ObjectiveFunction, 
-     * a disition engine that is capable of taking all visible objects into consideration.
-     * 
-     * The AI class starts to add visible items to the ObjectiveFunction instance in the appropriate
-     * categories. A decition will then be made as to what action to perform based on this information
-     * and on a set of weights that may be used to tweak the actors behavior. 
-     */
+public class ObjectiveFunction {
     
     // Parameter weights, used to tweak AI behavior:
 
@@ -48,7 +49,7 @@ public class ObjectiveFunction {
     private void updateParameters() {
 
         // for making movement disition
-        repulsionWeight = -5;
+        repulsionWeight = -10;
         foodWeight = ((int) (10 / RELATIVE_ENERGY));
         impartialWeight = -1;
 
@@ -121,12 +122,12 @@ public class ObjectiveFunction {
     public Command conclusion() {
 
         // Determining weather to breed
-
+        
         Set<Direction> occupiedDirections = occupiedDirections(occupiedLocations);
-
+        
         if (ACTOR instanceof ArenaAnimal) {
             if (RELATIVE_ENERGY > MINIMUM_BREED_ENERGY_PERCENTAGE && occupiedDirections.size() < 4) {
-
+                
                 Location newLocation = Util.getRandomEmptyAdjacentLocation((World) WORLD, currentLocation);
 
                 return new BreedCommand((ArenaAnimal) ACTOR, newLocation);
@@ -142,7 +143,10 @@ public class ObjectiveFunction {
         if (!attackableLocations.isEmpty() && attackDesire > movementVector.movementDesire()) {
             for (Item item : items) {
                 if (attackableLocations.contains(item.getLocation())) {
-                    return new AttackCommand(ACTOR, item);
+                    
+                    if (item.getStrength() < ACTOR.getStrength()) {
+                        return new EatCommand(ACTOR, item);
+                    }
                 }
             }
         }

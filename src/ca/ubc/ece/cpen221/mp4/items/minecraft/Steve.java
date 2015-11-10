@@ -1,7 +1,5 @@
 package ca.ubc.ece.cpen221.mp4.items.minecraft;
 
-import javax.swing.ImageIcon;
-
 import ca.ubc.ece.cpen221.mp4.Actor;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
@@ -22,7 +20,7 @@ public class Steve extends Actor {
     super.IS_MEAT = true;
     super.IS_VEGGIE = false;
     super.MAX_ENERGY = 600;
-    super.STRENGTH = 300; //he can punch trees with his bare hands.
+    super.STRENGTH = 200; //he can punch trees with his bare hands.
     
     //All Actor properties
     super.INITIAL_ENERGY = 500;

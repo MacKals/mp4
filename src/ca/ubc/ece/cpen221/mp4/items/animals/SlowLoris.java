@@ -24,7 +24,7 @@ public class SlowLoris extends ArenaAnimal {
     super.IS_MEAT = true;
     super.IS_VEGGIE = false;
     super.MAX_ENERGY = 120;
-    super.STRENGTH = 100;
+    super.STRENGTH = 60;
     
     //All Actor properties
     super.INITIAL_ENERGY = 100;
