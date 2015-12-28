@@ -9,7 +9,7 @@ import ca.ubc.ece.cpen221.mp4.Direction;
 import ca.ubc.ece.cpen221.mp4.Item;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
-import ca.ubc.ece.cpen221.mp4.commands.AttackCommand;
+import ca.ubc.ece.cpen221.mp4.commands.EatCommand;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
@@ -47,8 +47,8 @@ public class ArenaAnimalAI implements AI {
 			Item item = it.next();
 			if ((item.getName().equals("Gnat") || item.getName().equals("Rabbit"))
 					&& (current.getDistance(item.getLocation()) == 1)) {
-				return new AttackCommand(actor, item); // arena animals eat gnats
-														// and rabbits
+				return new EatCommand(actor, item); // arena animals eat gnats
+													    // and rabbits
 			}
 		}
 		if (Util.isValidLocation(world, targetLocation) && this.isLocationEmpty(world, actor, targetLocation)) {
